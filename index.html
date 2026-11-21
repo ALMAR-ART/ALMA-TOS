@@ -262,7 +262,7 @@
                                     <span id="s1-comm-notinc-badge" class="text-[11px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">Below Milestone</span>
                                 </div>
                                 <p id="s1-comm-notinc-desc" class="text-sm text-amber-200/80 leading-relaxed">
-                                    Applies when winning the bid below the post's commercial unlock threshold (not all SB bids exclude commercial rights—check each post's specific terms). You may NOT produce merchandise or use for direct profit. You can contact ALMA anytime to purchase commercial rights: the total price is the higher of AB + 20% or 2× your winning bid, and you only pay the difference from what you have already paid.
+                                    Applies when winning the bid below the post's commercial unlock threshold (not all SB bids exclude commercial rights—check each post's specific terms). You may NOT produce merchandise or use for direct profit. You can contact ALMA anytime to buy commercial rights later: the price is AB + 20%, and you only pay the difference from what you've already paid.
                                 </p>
                             </div>
                         </div>
@@ -271,9 +271,8 @@
                         <div class="p-3.5 rounded-xl bg-obsidian/60 border border-white/10 flex items-start gap-3">
                             <i data-lucide="info" class="w-4 h-4 text-gothicGold flex-shrink-0 mt-0.5"></i>
                             <div class="space-y-2 text-sm leading-relaxed">
-                                <span id="s1-example-title" class="font-semibold text-gothicGold block">Example of Bid Milestone Unlock (sample prices only):</span>
+                                <span id="s1-example-title" class="font-semibold text-gothicGold block">Unlock Example (sample prices only):</span>
                                 <p id="s1-example-desc" class="text-mutedText"></p>
-                                <p id="s1-example2-desc" class="text-mutedText"></p>
                             </div>
                         </div>
 
@@ -302,7 +301,7 @@
                                         </div>
                                     </div>
                                     <p id="calc-subtitle" class="text-xs text-mutedText">
-                                        Buying commercial rights later: total price = the higher of AB + 20% or 2× your winning bid (you pay the difference from what you already paid).
+                                        Buying commercial rights later: total price = AB + 20%. You only pay the difference from what you've already paid.
                                     </p>
                                 </div>
 
@@ -312,7 +311,7 @@
                                         <label id="calc-ab-label" for="ab-price-input" class="text-xs text-mutedText uppercase font-semibold">AB Price</label>
                                         <div class="relative">
                                             <span class="calc-currency-symbol absolute left-2.5 top-1/2 -translate-y-1/2 text-mutedText text-xs font-bold">$</span>
-                                            <input type="number" id="ab-price-input" value="60" min="0" oninput="onCalcInput()"
+                                            <input type="number" id="ab-price-input" value="150" min="0" oninput="onCalcInput()"
                                                    class="w-full bg-surface border border-white/15 rounded-lg pl-6 pr-3 py-1.5 text-sm text-white font-mono focus:outline-none focus:border-accent">
                                         </div>
                                     </div>
@@ -321,7 +320,7 @@
                                         <label id="calc-unlock-label" for="unlock-price-input" class="text-xs text-mutedText uppercase font-semibold">Commercial Unlock Price</label>
                                         <div class="relative">
                                             <span class="calc-currency-symbol absolute left-2.5 top-1/2 -translate-y-1/2 text-mutedText text-xs font-bold">$</span>
-                                            <input type="number" id="unlock-price-input" value="36" min="0" oninput="onCalcInput()"
+                                            <input type="number" id="unlock-price-input" value="75" min="0" oninput="onCalcInput()"
                                                    class="w-full bg-surface border border-white/15 rounded-lg pl-6 pr-3 py-1.5 text-sm text-white font-mono focus:outline-none focus:border-accent">
                                         </div>
                                     </div>
@@ -345,12 +344,12 @@
 
                                     <div class="p-3 rounded-xl border bg-obsidian/70 border-white/10">
                                         <span id="calc-total-label" class="text-[11px] text-mutedText block uppercase">Total w/ Commercial</span>
-                                        <span id="calculated-total" class="text-base font-bold text-gothicGold">$72.00</span>
+                                        <span id="calculated-total" class="text-base font-bold text-gothicGold">$180.00</span>
                                     </div>
 
                                     <div class="p-3 rounded-xl border bg-obsidian/70 border-white/10">
                                         <span id="calc-extra-label" class="text-[11px] text-mutedText block uppercase">Additional to Pay</span>
-                                        <span id="calculated-extra" class="text-base font-bold text-accent">+$42.00</span>
+                                        <span id="calculated-extra" class="text-base font-bold text-accent">+$150.00</span>
                                     </div>
                                 </div>
 
@@ -651,19 +650,19 @@
         const currencyData = {
             THB: {
                 symbol: '฿',
-                ab: 2000, unlock: 1200, bid: 1000,
-                ex: { sb: 1000, unlock1: 1200, ab: 2000, bid1: 1000, unlock2: 1800, bid2: 1700 }
+                ab: 5000, unlock: 2500, bid: 1000,
+                ex: { sb: 1000, unlock: 2500, ab: 5000, bid: 1000 }
             },
             USD: {
                 symbol: '$',
-                ab: 60, unlock: 36, bid: 30,
-                ex: { sb: 30, unlock1: 36, ab: 60, bid1: 30, unlock2: 54, bid2: 51 }
+                ab: 150, unlock: 75, bid: 30,
+                ex: { sb: 30, unlock: 75, ab: 150, bid: 30 }
             }
         };
 
-        // Commercial total = the higher of (AB + 20%) or (2 x winning bid)
-        function commercialTotal(ab, bid) {
-            return Math.max(ab * 1.2, bid * 2);
+        // Buying commercial rights later: total price = AB + 20%
+        function commercialTotal(ab) {
+            return ab * 1.2;
         }
 
         // ---------- Dictionary for English and Thai ----------
@@ -685,7 +684,7 @@
                 navTab6: "6. Payment & Refund",
 
                 calcTitle: "Commercial Right Fee Calculator",
-                calcSubtitle: "Buying commercial rights later: total price = the higher of AB + 20% or 2× your winning bid (you pay the difference from what you already paid).",
+                calcSubtitle: "Buying commercial rights later: total price = AB + 20%. You only pay the difference from what you've already paid.",
                 calcAbLabel: "AB Price",
                 calcUnlockLabel: "Commercial Unlock Price",
                 calcBidLabel: "Your Winning Bid",
@@ -694,7 +693,7 @@
                 calcNotIncludedText: "Personal use only — upgrade available",
                 calcTotalLabel: "Total w/ Commercial",
                 calcExtraLabel: "Additional to Pay",
-                calcNote: "Prices shown are examples only, not actual prices or live exchange rates (sample rate: $60 ≈ ฿2,000). Please check each post for real prices.",
+                calcNote: "Prices shown are examples only, not actual prices or live exchange rates (sample rate: $150 ≈ ฿5,000). Please check each post for real prices.",
 
                 s1Heading: "Usage Rights",
                 s1CopyTitle: "Design Ownership",
@@ -707,10 +706,9 @@
                 s1CommIncDesc: "Unlocked when winning the auction at or above the post's commercial milestone price, purchasing at Auto-Buy (AB), or when the post explicitly states commercial rights are included from SB. Allows merchandise (acrylic standees, keychains, prints, handmade goods), main characters in monetized games/novels, or VTuber models.",
                 s1CommNotIncTitle: "Commercial Rights NOT Included",
                 s1CommNotIncBadge: "Below Milestone",
-                s1CommNotIncDesc: "Applies when winning the bid below the post's commercial unlock threshold (not all SB bids exclude commercial rights—check each post's specific terms). You may NOT produce merchandise or use for direct profit. You can contact ALMA anytime to purchase commercial rights: the total price is the higher of AB + 20% or 2× your winning bid, and you only pay the difference from what you have already paid.",
-                s1ExampleTitle: "Example of Bid Milestone Unlock (sample prices only):",
-                s1Example1: (v) => `<strong class="text-silverText">Example 1</strong> — SB ${v.sb} / Commercial Unlock at ${v.unlock1} / AB ${v.ab}: winning at ${v.unlock1} or above, or buying at AB ${v.ab}, includes Commercial Rights immediately. Winning at ${v.bid1} grants Personal Use only; to add commercial rights later, the total price is AB + 20% = ${v.total1} (you pay ${v.extra1} more than the ${v.bid1} already paid).`,
-                s1Example2: (v) => `<strong class="text-silverText">Example 2</strong> — Commercial Unlock at ${v.unlock2} / AB ${v.ab}: winning at ${v.bid2} grants Personal Use only. AB + 20% would be ${v.abPlus}, which is less than 2× your bid, so the commercial total becomes 2× the winning bid = ${v.total2} (you pay ${v.extra2} more). This keeps the price from falling below 2× the winning bid.`,
+                s1CommNotIncDesc: "Applies when winning the bid below the post's commercial unlock threshold (not all SB bids exclude commercial rights—check each post's specific terms). You may NOT produce merchandise or use for direct profit. You can contact ALMA anytime to buy commercial rights later: the price is AB + 20%, and you only pay the difference from what you've already paid.",
+                s1ExampleTitle: "Unlock Example (sample prices only):",
+                s1Example: (v) => `Suppose a post lists: SB ${v.sb} / Commercial Unlock at ${v.unlock} / AB ${v.ab}. If you bid ${v.unlock} or higher, you get commercial rights right away. If you buy commercial rights later instead, you pay the difference up to AB + 20%, which is ${v.ab} + 20% = ${v.total} (for example, if you won at ${v.bid}, you pay ${v.extra} more).`,
 
                 s2Heading: "Design Modification",
                 s2Desc: "✦ When creating new artwork, you are free to adjust the hairstyle, clothing, accessories, gender, or minor details as you see fit, provided the original core design remains recognizable.",
@@ -775,7 +773,7 @@
                 navTab6: "6. การชำระเงิน & คืนเงิน",
 
                 calcTitle: "เครื่องคำนวณสิทธิ์เชิงพาณิชย์",
-                calcSubtitle: "ซื้อสิทธิ์เชิงพาณิชย์ภายหลัง: ราคารวม = ค่าที่สูงกว่าระหว่าง AB + 20% หรือ 2 เท่าของราคาบิดที่ชนะ (จ่ายเพิ่มเฉพาะส่วนต่างจากที่จ่ายไปแล้ว)",
+                calcSubtitle: "ซื้อสิทธิ์เชิงพาณิชย์ภายหลัง: ราคารวม = AB + 20% จ่ายเพิ่มเฉพาะส่วนต่างจากที่จ่ายไปแล้ว",
                 calcAbLabel: "ราคา AB",
                 calcUnlockLabel: "ราคาปลดล็อกเชิงพาณิชย์",
                 calcBidLabel: "ราคาบิดที่ชนะ",
@@ -784,7 +782,7 @@
                 calcNotIncludedText: "ใช้งานส่วนตัวเท่านั้น — ซื้อสิทธิ์เพิ่มได้",
                 calcTotalLabel: "ราคารวมสิทธิ์เชิงพาณิชย์",
                 calcExtraLabel: "ต้องจ่ายเพิ่ม",
-                calcNote: "ราคาที่แสดงเป็นเพียงตัวอย่างเท่านั้น ไม่ใช่ราคาจริงหรืออัตราแลกเปลี่ยนจริง (อัตราตัวอย่าง: $60 ≈ ฿2,000) กรุณาดูราคาจริงในแต่ละโพสต์",
+                calcNote: "ราคาที่แสดงเป็นเพียงตัวอย่างเท่านั้น ไม่ใช่ราคาจริงหรืออัตราแลกเปลี่ยนจริง (อัตราตัวอย่าง: $150 ≈ ฿5,000) กรุณาดูราคาจริงในแต่ละโพสต์",
 
                 s1Heading: "สิทธิ์การใช้งาน (Usage Rights)",
                 s1CopyTitle: "ความเป็นเจ้าของงานออกแบบ",
@@ -797,10 +795,9 @@
                 s1CommIncDesc: "ได้รับสิทธิ์เมื่อชนะประมูลถึงราคาเกณฑ์ปลดล็อกที่ระบุในโพสต์, ซื้อในราคา AB, หรือเป็นตัวละครที่ระบุว่าแถมสิทธิ์เชิงพาณิชย์ตั้งแต่ราคาเปิด (SB) สามารถนำไปผลิตสินค้า (สแตนดี้ พวงกุญแจ สินค้าทำมือ) ใช้ในนิยาย/เกมที่สร้างรายได้ หรือเป็นโมเดล VTuber ได้",
                 s1CommNotIncTitle: "ยังไม่รวมสิทธิ์เชิงพาณิชย์",
                 s1CommNotIncBadge: "ต่ำกว่าเกณฑ์ปลดล็อก",
-                s1CommNotIncDesc: "สำหรับผู้ที่ชนะการประมูลในราคาที่ยังไม่ถึงเกณฑ์ปลดล็อกสิทธิ์เชิงพาณิชย์ที่ระบุในโพสต์ (ราคา SB ไม่ได้หมายความว่าไม่รวมสิทธิ์เชิงพาณิชย์เสมอไป กรุณาดูเงื่อนไขในแต่ละโพสต์) ห้ามผลิตสินค้าจำหน่ายหรือหารายได้โดยตรง สามารถติดต่อ ALMA เพื่อซื้อสิทธิ์เชิงพาณิชย์ภายหลังได้ตลอด โดยราคารวมคือค่าที่สูงกว่าระหว่าง AB + 20% หรือ 2 เท่าของราคาบิดที่ชนะ และจ่ายเพิ่มเฉพาะส่วนต่างจากที่จ่ายไปแล้ว",
-                s1ExampleTitle: "ตัวอย่างเงื่อนไขการปลดล็อกสิทธิ์ (เป็นราคาตัวอย่างเท่านั้น):",
-                s1Example1: (v) => `<strong class="text-silverText">ตัวอย่างที่ 1</strong> — เปิดประมูล (SB) ${v.sb} / ปลดล็อกเชิงพาณิชย์ที่ ${v.unlock1} / AB ${v.ab}: หากจบประมูลที่ ${v.unlock1} ขึ้นไป หรือกด AB ${v.ab} จะได้รับสิทธิ์เชิงพาณิชย์ทันที แต่หากจบที่ ${v.bid1} จะได้สิทธิ์ใช้งานส่วนตัวเท่านั้น และหากต้องการซื้อสิทธิ์เชิงพาณิชย์ภายหลัง ราคารวมจะเป็น AB + 20% = ${v.total1} (จ่ายเพิ่มอีก ${v.extra1} จากที่จ่ายไปแล้ว ${v.bid1})`,
-                s1Example2: (v) => `<strong class="text-silverText">ตัวอย่างที่ 2</strong> — ปลดล็อกเชิงพาณิชย์ที่ ${v.unlock2} / AB ${v.ab}: หากจบประมูลที่ ${v.bid2} จะได้สิทธิ์ใช้งานส่วนตัวเท่านั้น โดย AB + 20% จะเป็น ${v.abPlus} ซึ่งต่ำกว่า 2 เท่าของราคาบิด ราคารวมสิทธิ์เชิงพาณิชย์จึงคิดเป็น 2 เท่าของราคาบิด = ${v.total2} (จ่ายเพิ่มอีก ${v.extra2}) เพื่อป้องกันไม่ให้ราคาต่ำกว่า 2 เท่าของราคาบิด`,
+                s1CommNotIncDesc: "สำหรับผู้ที่ชนะการประมูลในราคาที่ยังไม่ถึงเกณฑ์ปลดล็อกสิทธิ์เชิงพาณิชย์ที่ระบุในโพสต์ (ราคา SB ไม่ได้หมายความว่าไม่รวมสิทธิ์เชิงพาณิชย์เสมอไป กรุณาดูเงื่อนไขในแต่ละโพสต์) ห้ามผลิตสินค้าจำหน่ายหรือหารายได้โดยตรง สามารถติดต่อ ALMA เพื่อซื้อสิทธิ์เชิงพาณิชย์ภายหลังได้ตลอด โดยราคาคือ AB + 20% และจ่ายเพิ่มเฉพาะส่วนต่างจากที่จ่ายไปแล้ว",
+                s1ExampleTitle: "ตัวอย่างการปลดล็อกสิทธิ์ (ราคาตัวอย่างเท่านั้น):",
+                s1Example: (v) => `ตัวอย่าง: โพสต์ระบุเปิดประมูล (SB) ${v.sb} / ปลดล็อกสิทธิ์เชิงพาณิชย์ที่ ${v.unlock} / AB ${v.ab} — หากบิดถึง ${v.unlock} ขึ้นไป จะได้สิทธิ์เชิงพาณิชย์ทันที แต่หากมาซื้อสิทธิ์เชิงพาณิชย์ทีหลัง จะต้องจ่ายส่วนต่างให้ถึง AB + 20% คือ ${v.ab} + 20% = ${v.total} (เช่น จบประมูลที่ ${v.bid} ก็จ่ายเพิ่มอีก ${v.extra})`,
 
                 s2Heading: "การดัดแปลงดีไซน์ (Design Modification)",
                 s2Desc: "✦ ในกรณีที่วาดขึ้นใหม่ สามารถปรับเปลี่ยนทรงผม ชุด เครื่องประดับ เพศ หรือรายละเอียดเล็กน้อยของตัวละครได้ตามความเหมาะสม แต่ขอให้ยังคงเค้าโครงดีไซน์เดิมไว้",
@@ -879,25 +876,18 @@
         function renderExamples() {
             const data = i18nData[currentLang];
             const ex = currencyData[currentCurrency].ex;
-            const total1 = commercialTotal(ex.ab, ex.bid1);
-            const total2 = commercialTotal(ex.ab, ex.bid2);
+            const total = commercialTotal(ex.ab);
 
             const v = {
                 sb: money(ex.sb, true),
-                unlock1: money(ex.unlock1, true),
+                unlock: money(ex.unlock, true),
                 ab: money(ex.ab, true),
-                bid1: money(ex.bid1, true),
-                unlock2: money(ex.unlock2, true),
-                bid2: money(ex.bid2, true),
-                abPlus: money(ex.ab * 1.2, true),
-                total1: money(total1, true),
-                extra1: money(total1 - ex.bid1, true),
-                total2: money(total2, true),
-                extra2: money(total2 - ex.bid2, true)
+                bid: money(ex.bid, true),
+                total: money(total, true),
+                extra: money(total - ex.bid, true)
             };
 
-            setHTML('s1-example-desc', data.s1Example1(v));
-            setHTML('s1-example2-desc', data.s1Example2(v));
+            setHTML('s1-example-desc', data.s1Example(v));
         }
 
         // ---------- Currency switch (THB / USD) ----------
@@ -1057,7 +1047,7 @@
             if (unlock <= 0) unlock = ab; // no unlock price given -> only AB includes commercial rights
 
             const included = bid > 0 && (bid >= unlock || bid >= ab);
-            const total = included ? bid : commercialTotal(ab, bid);
+            const total = included ? bid : commercialTotal(ab);
             const extra = included ? 0 : Math.max(total - bid, 0);
 
             const statusBox = document.getElementById('calc-status-box');
