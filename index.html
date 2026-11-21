@@ -140,13 +140,6 @@
                         TH
                     </button>
                 </div>
-
-                <!-- Quick Copy TOS Button -->
-                <button onclick="copyCurrentTOS()" 
-                        class="flex items-center gap-2 bg-crimson/10 hover:bg-crimson/20 border border-crimson/40 text-crimson hover:text-white px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 active:scale-95">
-                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                    <span id="copy-btn-text">Copy TOS</span>
-                </button>
             </div>
         </div>
     </header>
@@ -475,7 +468,39 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-white/10 bg-obsidian py-8 px-4 text-center space-y-4">
+    <footer class="border-t border-white/10 bg-obsidian py-8 px-4 text-center space-y-5">
+        <!-- Follow Channels -->
+        <div class="max-w-5xl mx-auto space-y-3">
+            <p id="follow-label" class="text-xs font-semibold uppercase tracking-wider text-mutedText">
+                Follow ALMA
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-3 text-xs">
+                <a href="https://www.facebook.com/AlMarSalZ/" target="_blank" rel="noopener noreferrer"
+                   class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface hover:bg-card border border-white/10 hover:border-crimson/50 text-silverText hover:text-white transition-all duration-200">
+                    <svg class="w-4 h-4 text-crimson fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                    </svg>
+                    <span>Facebook</span>
+                </a>
+                <a href="https://x.com/AlMaDaY0" target="_blank" rel="noopener noreferrer"
+                   class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface hover:bg-card border border-white/10 hover:border-crimson/50 text-silverText hover:text-white transition-all duration-200">
+                    <svg class="w-3.5 h-3.5 text-crimson fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    <span>X</span>
+                </a>
+                <a href="https://www.deviantart.com/o0alma0o" target="_blank" rel="noopener noreferrer"
+                   class="flex items-center gap-2 px-4 py-2 rounded-full bg-surface hover:bg-card border border-white/10 hover:border-crimson/50 text-silverText hover:text-white transition-all duration-200">
+                    <svg class="w-4 h-4 text-gothicGold fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M19.207 4.794l.23-.43V0H15.07l-.436.44-2.058 3.925-.646.436H4.58v5.993h4.04l.36.436-4.175 7.98-.24.43V24H8.93l.436-.44 2.07-3.925.644-.436h7.35v-5.993h-4.05l-.36-.438 4.186-7.977z"/>
+                    </svg>
+                    <span>DeviantArt</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="gothic-divider max-w-xl mx-auto"></div>
+
         <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-mutedText">
             <div class="flex items-center gap-2">
                 <i data-lucide="copyright" class="w-4 h-4 text-crimson"></i>
@@ -490,19 +515,12 @@
         </div>
     </footer>
 
-    <!-- Toast Notification Container -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-card border border-crimson text-white px-4 py-3 rounded-xl shadow-2xl shadow-crimson/20 flex items-center gap-3 transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
-        <i data-lucide="check-circle" class="w-5 h-5 text-crimson"></i>
-        <span id="toast-message" class="text-xs sm:text-sm font-medium">Copied to clipboard!</span>
-    </div>
-
     <!-- JavaScript Interactions & Internationalization (EN / TH) -->
     <script>
         // Dictionary for English and Thai
         const i18nData = {
             en: {
                 navSubtitle: "Official Terms of Service",
-                copyBtn: "Copy TOS",
                 heroBadge: "Official Guidelines & Rules",
                 heroTitle: "Character Adoptable Terms of Service",
                 heroDesc: "Please read carefully before bidding, purchasing, or offering for ALMA's character designs. By acquiring a character, you automatically agree to these terms.",
@@ -553,12 +571,11 @@
                 s6RefundTitle: "✦ Final Sales & Refunds",
                 s6RefundDesc: "Once digital files have been delivered, all sales are final. No refunds will be granted under any circumstances.",
 
-                footerCopy: "ALMA — All Rights Reserved. Adoptable Terms of Service.",
-                copiedToast: "TOS copied to clipboard!"
+                followLabel: "Follow ALMA",
+                footerCopy: "ALMA — All Rights Reserved. Adoptable Terms of Service."
             },
             th: {
                 navSubtitle: "ข้อตกลงการใช้งานตัวละครอย่างเป็นทางการ",
-                copyBtn: "คัดลอก TOS",
                 heroBadge: "กฎและข้อตกลงอย่างเป็นทางการ",
                 heroTitle: "ข้อตกลงการใช้งานตัวละคร (Terms of Service)",
                 heroDesc: "กรุณาอ่านรายละเอียดอย่างถี่ถ้วนก่อนทำการประมูล ซื้อ หรือยื่นข้อเสนอสำหรับตัวละครของ ALMA การผู้ครอบครองตัวละครถือว่ายอมรับข้อตกลงนี้โดยอัตโนมัติ",
@@ -609,8 +626,8 @@
                 s6RefundTitle: "✦ การคืนเงิน",
                 s6RefundDesc: "เมื่อส่งมอบไฟล์งานแล้ว ขอสงวนสิทธิ์ในการไม่คืนเงินทุกกรณี",
 
-                footerCopy: "ALMA — สงวนลิขสิทธิ์ทั้งหมด ข้อตกลงการใช้งานตัวละคร (Terms of Service)",
-                copiedToast: "คัดลอกข้อตกลง TOS เรียบร้อยแล้ว!"
+                followLabel: "ช่องทางติดตาม ALMA",
+                footerCopy: "ALMA — สงวนลิขสิทธิ์ทั้งหมด ข้อตกลงการใช้งานตัวละคร (Terms of Service)"
             }
         };
 
@@ -634,7 +651,6 @@
 
             // Update text elements
             document.getElementById('nav-subtitle').innerText = data.navSubtitle;
-            document.getElementById('copy-btn-text').innerText = data.copyBtn;
             document.getElementById('hero-badge').innerText = data.heroBadge;
             document.getElementById('hero-title').innerText = data.heroTitle;
             document.getElementById('hero-desc').innerText = data.heroDesc;
@@ -685,6 +701,7 @@
             document.getElementById('s6-refund-title').innerText = data.s6RefundTitle;
             document.getElementById('s6-refund-desc').innerText = data.s6RefundDesc;
 
+            document.getElementById('follow-label').innerText = data.followLabel;
             document.getElementById('footer-copy').innerText = data.footerCopy;
         }
 
@@ -702,44 +719,6 @@
 
             feeSpan.innerText = `+$${fee.toFixed(2)}`;
             totalSpan.innerText = `$${total.toFixed(2)}`;
-        }
-
-        // Copy TOS to Clipboard
-        function copyCurrentTOS() {
-            const data = i18nData[currentLang];
-            let textToCopy = `📋 ${data.heroTitle} — ALMA\n\n`;
-            textToCopy += `1. ${data.s1Heading}\n`;
-            textToCopy += `• Personal: ${data.s1PersonalDesc}\n`;
-            textToCopy += `• Commercial (+30% AB fee if unincluded): ${data.s1CommIncDesc}\n\n`;
-            textToCopy += `2. ${data.s2Heading}\n${data.s2Desc}\n\n`;
-            textToCopy += `3. ${data.s3Heading}\n`;
-            textToCopy += `• Resell: ${data.s3ResellDesc}\n`;
-            textToCopy += `• Trade/Gift: ${data.s3TradeDesc}\n\n`;
-            textToCopy += `4. ${data.s4Heading}\n• ${data.s4OrigDesc}\n\n`;
-            textToCopy += `5. ${data.s5Heading}\n${data.s5P1}\n${data.s5P2}\n${data.s5P3}\n\n`;
-            textToCopy += `6. ${data.s6Heading}\n• ${data.s6TimeDesc}\n• ${data.s6PlanDesc}\n• ${data.s6RefundDesc}`;
-
-            // ExecCommand Copy Fallback
-            const dummy = document.createElement("textarea");
-            document.body.appendChild(dummy);
-            dummy.value = textToCopy;
-            dummy.select();
-            document.execCommand("copy");
-            document.body.removeChild(dummy);
-
-            showToast(data.copiedToast);
-        }
-
-        // Toast Notification Helper
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-message');
-            toastMsg.innerText = msg;
-            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
-            
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
-            }, 3000);
         }
 
         // Real-time TOS Keyword Search Filter
