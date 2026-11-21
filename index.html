@@ -41,6 +41,10 @@
         }
     </script>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: #0a090d;
             color: #e2e8f0;
@@ -104,7 +108,7 @@
 
     <!-- Sticky Navigation Header -->
     <header class="sticky top-0 z-50 glass-header border-b border-crimson/20 px-4 lg:px-8 py-3 transition-all duration-300">
-        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
+        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
             
             <!-- Logo & Brand -->
             <div class="flex items-center gap-3">
@@ -120,15 +124,7 @@
             </div>
 
             <!-- Header Quick Actions & Language Toggle -->
-            <div class="flex items-center gap-3">
-                
-                <!-- Search TOS -->
-                <div class="relative hidden sm:block">
-                    <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-mutedText"></i>
-                    <input type="text" id="tos-search" placeholder="Search TOS keywords..." 
-                           class="w-44 lg:w-56 bg-surface border border-white/10 rounded-full pl-9 pr-4 py-1.5 text-xs text-silverText focus:outline-none focus:border-crimson transition-all">
-                </div>
-
+            <div class="flex items-center gap-3 order-2 sm:order-none">
                 <!-- Language Switcher Button -->
                 <div class="flex items-center bg-surface border border-white/15 rounded-full p-1 shadow-inner">
                     <button id="lang-en-btn" onclick="switchLanguage('en')" 
@@ -140,6 +136,13 @@
                         TH
                     </button>
                 </div>
+            </div>
+
+            <!-- Search TOS (visible on every screen size) -->
+            <div class="relative w-full sm:w-auto order-3 sm:order-none sm:ml-auto sm:mr-3">
+                <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-mutedText"></i>
+                <input type="text" id="tos-search" placeholder="Search TOS keywords..." 
+                       class="w-full sm:w-52 lg:w-60 bg-surface border border-white/10 rounded-full pl-9 pr-4 py-1.5 text-xs text-silverText focus:outline-none focus:border-crimson transition-all">
             </div>
         </div>
     </header>
@@ -162,6 +165,12 @@
                 Please read carefully before bidding, purchasing, or offering for ALMA's character designs. By acquiring a character, you automatically agree to these terms.
             </p>
 
+            <!-- Last updated -->
+            <div class="inline-flex items-center gap-2 text-xs text-mutedText">
+                <i data-lucide="calendar" class="w-3.5 h-3.5 text-gothicGold"></i>
+                <span id="hero-updated">Last updated: November 21, 2026</span>
+            </div>
+
             <!-- Decorative Gothic Divider -->
             <div class="w-full max-w-md mx-auto pt-4 flex items-center justify-center gap-3">
                 <div class="h-px bg-gradient-to-r from-transparent via-crimson/40 to-transparent flex-grow"></div>
@@ -176,7 +185,7 @@
             <a id="nav-tab-2" href="#section-2" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-card border border-white/10 hover:border-crimson/40 text-silverText transition-all">2. Modification</a>
             <a id="nav-tab-3" href="#section-3" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-card border border-white/10 hover:border-crimson/40 text-silverText transition-all">3. Resell & Trade</a>
             <a id="nav-tab-4" href="#section-4" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-card border border-white/10 hover:border-crimson/40 text-silverText transition-all">4. Credit</a>
-            <a id="nav-tab-5" href="#section-5" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-card border border-white/10 hover:border-crimson/40 text-silverText transition-all text-crimson">5. Prohibited</a>
+            <a id="nav-tab-5" href="#section-5" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-card border border-crimson/30 hover:border-crimson/60 text-crimson transition-all">5. Prohibited</a>
             <a id="nav-tab-6" href="#section-6" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-card border border-white/10 hover:border-crimson/40 text-silverText transition-all">6. Payment & Refund</a>
         </nav>
 
@@ -184,7 +193,7 @@
         <div class="space-y-6">
 
             <!-- Section 1: Usage Rights -->
-            <section id="section-1" class="tos-card bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
+            <section id="section-1" class="tos-card scroll-mt-32 bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
                 <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
                     <div class="p-2.5 rounded-xl bg-crimson/15 text-crimson border border-crimson/30">
                         <i data-lucide="shield-check" class="w-5 h-5"></i>
@@ -196,6 +205,18 @@
                 </div>
 
                 <div class="space-y-4 text-sm text-silverText leading-relaxed">
+
+                    <!-- Copyright Ownership Notice -->
+                    <div class="p-4 rounded-xl bg-gothicGold/10 border border-gothicGold/30 flex items-start gap-3">
+                        <i data-lucide="copyright" class="w-5 h-5 text-gothicGold flex-shrink-0 mt-0.5"></i>
+                        <div class="space-y-1">
+                            <span id="s1-copy-title" class="font-semibold text-gothicGold block">Design Ownership</span>
+                            <p id="s1-copy-desc" class="text-xs sm:text-sm text-silverText/90 leading-relaxed">
+                                ALMA is the original designer and continues to hold the copyright of all character designs and original artwork. Once you adopt a character, you're free to use them according to the rights described in these Terms.
+                            </p>
+                        </div>
+                    </div>
+
                     <!-- Personal Use -->
                     <div class="p-4 rounded-xl bg-surface/80 border border-white/5 space-y-2">
                         <div class="flex items-center gap-2 font-semibold text-white">
@@ -215,8 +236,9 @@
                             <!-- Commercial Included -->
                             <div class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/30 space-y-2">
                                 <div class="flex items-center justify-between gap-2 flex-wrap">
-                                    <span id="s1-comm-inc-title" class="font-semibold text-emerald-400 text-xs flex items-center gap-1.5">
-                                        <i data-lucide="check-circle-2" class="w-4 h-4"></i> Commercial Rights Included
+                                    <span class="font-semibold text-emerald-400 text-xs flex items-center gap-1.5">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                                        <span id="s1-comm-inc-title">Commercial Rights Included</span>
                                     </span>
                                     <span id="s1-comm-inc-badge" class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/30">Milestone Reached / AB</span>
                                 </div>
@@ -228,13 +250,14 @@
                             <!-- Commercial Not Included -->
                             <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-500/30 space-y-2">
                                 <div class="flex items-center justify-between gap-2 flex-wrap">
-                                    <span id="s1-comm-notinc-title" class="font-semibold text-amber-400 text-xs flex items-center gap-1.5">
-                                        <i data-lucide="alert-circle" class="w-4 h-4"></i> Commercial Rights NOT Included
+                                    <span class="font-semibold text-amber-400 text-xs flex items-center gap-1.5">
+                                        <i data-lucide="alert-circle" class="w-4 h-4"></i>
+                                        <span id="s1-comm-notinc-title">Commercial Rights NOT Included</span>
                                     </span>
                                     <span id="s1-comm-notinc-badge" class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">Below Milestone</span>
                                 </div>
                                 <p id="s1-comm-notinc-desc" class="text-xs text-amber-200/80 leading-relaxed">
-                                    Applies when winning the bid below the post's commercial unlock threshold (not all SB bids exclude commercial rights—check each post's specific terms). You may NOT produce merchandise or use for direct profit, though you can contact ALMA anytime to unlock commercial rights for +30% of the AB price.
+                                    Applies when winning the bid below the post's commercial unlock threshold (not all SB bids exclude commercial rights—check each post's specific terms). You may NOT produce merchandise or use for direct profit. You can contact ALMA anytime to purchase commercial rights: the total price is the higher of AB + 20% or 2× your winning bid, and you only pay the difference from what you have already paid.
                                 </p>
                             </div>
                         </div>
@@ -242,20 +265,19 @@
                         <!-- Bid Milestone Example Callout -->
                         <div class="p-3.5 rounded-xl bg-obsidian/60 border border-white/10 flex items-start gap-3">
                             <i data-lucide="info" class="w-4 h-4 text-gothicGold flex-shrink-0 mt-0.5"></i>
-                            <div class="space-y-1 text-xs leading-relaxed">
-                                <span id="s1-example-title" class="font-semibold text-gothicGold block">Example of Bid Milestone Unlock:</span>
-                                <p id="s1-example-desc" class="text-mutedText">
-                                    Suppose a post lists: SB 1,000 / Commercial Unlock at 1,500 / AB 2,000 — Winning at 1,200 grants Personal Use (can pay +30% AB later to unlock). Winning at 1,500+ or buying at AB 2,000 grants Commercial Rights immediately.
-                                </p>
+                            <div class="space-y-2 text-xs leading-relaxed">
+                                <span id="s1-example-title" class="font-semibold text-gothicGold block">Example of Bid Milestone Unlock (sample prices only):</span>
+                                <p id="s1-example-desc" class="text-mutedText"></p>
+                                <p id="s1-example2-desc" class="text-mutedText"></p>
                             </div>
                         </div>
 
-                        <!-- Interactive Commercial Calculator Card (Placed inside Section 1) -->
+                        <!-- Interactive Commercial Calculator Card -->
                         <div class="mt-4 bg-gradient-to-br from-surface via-obsidian/90 to-surface border border-crimson/30 rounded-xl p-4 sm:p-5 crimson-glow-box relative overflow-hidden">
                             <div class="absolute -right-10 -bottom-10 w-36 h-36 bg-crimson/10 rounded-full blur-3xl pointer-events-none"></div>
 
-                            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 relative z-10">
-                                <div class="space-y-1.5 flex-1">
+                            <div class="space-y-4 relative z-10">
+                                <div class="space-y-1.5">
                                     <div class="flex flex-wrap items-center justify-between gap-2">
                                         <div class="flex items-center gap-2 text-crimson font-heading font-semibold text-sm">
                                             <i data-lucide="calculator" class="w-4 h-4"></i>
@@ -275,32 +297,61 @@
                                         </div>
                                     </div>
                                     <p id="calc-subtitle" class="text-xs text-mutedText">
-                                        Commercial rights require +30% of the Auto-Buy (AB) price (if not already included in the tier).
+                                        Buying commercial rights later: total price = the higher of AB + 20% or 2× your winning bid (you pay the difference from what you already paid).
                                     </p>
                                 </div>
 
-                                <div class="flex flex-wrap items-center gap-3 sm:gap-4 w-full lg:w-auto bg-obsidian/70 p-3 rounded-xl border border-white/10">
-                                    <div class="space-y-1 flex-1 min-w-[125px]">
-                                        <label id="calc-input-label" class="text-[11px] text-mutedText uppercase font-semibold">Base AB Price</label>
+                                <!-- Inputs -->
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-obsidian/70 p-3 rounded-xl border border-white/10">
+                                    <div class="space-y-1">
+                                        <label id="calc-ab-label" for="ab-price-input" class="text-[11px] text-mutedText uppercase font-semibold">AB Price</label>
                                         <div class="relative">
-                                            <span id="calc-currency-symbol" class="absolute left-2.5 top-1/2 -translate-y-1/2 text-mutedText text-xs font-bold">$</span>
-                                            <input type="number" id="ab-price-input" value="60" min="0" oninput="calculateCommercialFee()"
+                                            <span class="calc-currency-symbol absolute left-2.5 top-1/2 -translate-y-1/2 text-mutedText text-xs font-bold">$</span>
+                                            <input type="number" id="ab-price-input" value="60" min="0" oninput="onCalcInput()"
                                                    class="w-full bg-surface border border-white/15 rounded-lg pl-6 pr-3 py-1.5 text-sm text-white font-mono focus:outline-none focus:border-crimson">
                                         </div>
                                     </div>
 
-                                    <div class="text-center font-mono">
-                                        <span class="text-[11px] text-mutedText block">+30% Fee</span>
-                                        <span id="calculated-fee" class="text-sm font-bold text-crimson">+$18.00</span>
+                                    <div class="space-y-1">
+                                        <label id="calc-unlock-label" for="unlock-price-input" class="text-[11px] text-mutedText uppercase font-semibold">Commercial Unlock Price</label>
+                                        <div class="relative">
+                                            <span class="calc-currency-symbol absolute left-2.5 top-1/2 -translate-y-1/2 text-mutedText text-xs font-bold">$</span>
+                                            <input type="number" id="unlock-price-input" value="36" min="0" oninput="onCalcInput()"
+                                                   class="w-full bg-surface border border-white/15 rounded-lg pl-6 pr-3 py-1.5 text-sm text-white font-mono focus:outline-none focus:border-crimson">
+                                        </div>
                                     </div>
 
-                                    <div class="h-8 w-px bg-white/10 hidden sm:block"></div>
-
-                                    <div class="text-right font-mono flex-1 min-w-[125px]">
-                                        <span id="calc-total-label" class="text-[11px] text-mutedText block uppercase">Total w/ Commercial</span>
-                                        <span id="calculated-total" class="text-base font-bold text-gothicGold">$78.00</span>
+                                    <div class="space-y-1">
+                                        <label id="calc-bid-label" for="bid-price-input" class="text-[11px] text-mutedText uppercase font-semibold">Your Winning Bid</label>
+                                        <div class="relative">
+                                            <span class="calc-currency-symbol absolute left-2.5 top-1/2 -translate-y-1/2 text-mutedText text-xs font-bold">$</span>
+                                            <input type="number" id="bid-price-input" value="30" min="0" oninput="onCalcInput()"
+                                                   class="w-full bg-surface border border-white/15 rounded-lg pl-6 pr-3 py-1.5 text-sm text-white font-mono focus:outline-none focus:border-crimson">
+                                        </div>
                                     </div>
                                 </div>
+
+                                <!-- Results -->
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono">
+                                    <div class="p-3 rounded-xl border bg-amber-950/20 border-amber-500/30" id="calc-status-box">
+                                        <span class="text-[11px] text-mutedText block uppercase" id="calc-status-label">Status</span>
+                                        <span id="calc-status-text" class="text-xs font-semibold text-amber-300 font-body leading-snug block mt-1">Personal use only</span>
+                                    </div>
+
+                                    <div class="p-3 rounded-xl border bg-obsidian/70 border-white/10">
+                                        <span id="calc-total-label" class="text-[11px] text-mutedText block uppercase">Total w/ Commercial</span>
+                                        <span id="calculated-total" class="text-base font-bold text-gothicGold">$72.00</span>
+                                    </div>
+
+                                    <div class="p-3 rounded-xl border bg-obsidian/70 border-white/10">
+                                        <span id="calc-extra-label" class="text-[11px] text-mutedText block uppercase">Additional to Pay</span>
+                                        <span id="calculated-extra" class="text-base font-bold text-crimson">+$42.00</span>
+                                    </div>
+                                </div>
+
+                                <p id="calc-note" class="text-[11px] text-mutedText/80 leading-relaxed">
+                                    Prices shown are examples only, not actual prices or live exchange rates.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -308,7 +359,7 @@
             </section>
 
             <!-- Section 2: Design Modification -->
-            <section id="section-2" class="tos-card bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
+            <section id="section-2" class="tos-card scroll-mt-32 bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
                 <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
                     <div class="p-2.5 rounded-xl bg-crimson/15 text-crimson border border-crimson/30">
                         <i data-lucide="palette" class="w-5 h-5"></i>
@@ -327,7 +378,7 @@
             </section>
 
             <!-- Section 3: Resell, Trade & Gift -->
-            <section id="section-3" class="tos-card bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
+            <section id="section-3" class="tos-card scroll-mt-32 bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
                 <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
                     <div class="p-2.5 rounded-xl bg-crimson/15 text-crimson border border-crimson/30">
                         <i data-lucide="repeat" class="w-5 h-5"></i>
@@ -372,10 +423,21 @@
                         </p>
                     </div>
                 </div>
+
+                <!-- Rights carry over -->
+                <div class="mt-4 p-4 rounded-xl bg-obsidian/60 border border-white/10 flex items-start gap-3 text-xs leading-relaxed">
+                    <i data-lucide="key-round" class="w-4 h-4 text-gothicGold flex-shrink-0 mt-0.5"></i>
+                    <div class="space-y-1">
+                        <span id="s3-rights-title" class="font-semibold text-gothicGold block">Rights Stay As They Were</span>
+                        <p id="s3-rights-desc" class="text-mutedText">
+                            Usage rights transfer with the character exactly as they were. If commercial rights were included or already purchased, the new owner keeps them; if not, the new owner has Personal Use only and may purchase the commercial upgrade from ALMA as described in Section 1.
+                        </p>
+                    </div>
+                </div>
             </section>
 
             <!-- Section 4: Credit -->
-            <section id="section-4" class="tos-card bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
+            <section id="section-4" class="tos-card scroll-mt-32 bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
                 <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
                     <div class="p-2.5 rounded-xl bg-crimson/15 text-crimson border border-crimson/30">
                         <i data-lucide="sparkle" class="w-5 h-5"></i>
@@ -410,7 +472,7 @@
             </section>
 
             <!-- Section 5: Prohibited Actions (Warning Section) -->
-            <section id="section-5" class="tos-card bg-gradient-to-b from-rose-950/20 via-card to-card border border-crimson/40 rounded-2xl p-6 transition-all duration-300">
+            <section id="section-5" class="tos-card scroll-mt-32 bg-gradient-to-b from-rose-950/20 via-card to-card border border-crimson/40 rounded-2xl p-6 transition-all duration-300">
                 <div class="flex items-center gap-3 mb-4 pb-3 border-b border-crimson/20">
                     <div class="p-2.5 rounded-xl bg-crimson text-white shadow-lg shadow-crimson/30">
                         <i data-lucide="slash" class="w-5 h-5"></i>
@@ -433,14 +495,35 @@
                     </div>
 
                     <div class="p-3.5 rounded-xl bg-crimson/10 border border-crimson/30 text-rose-200 flex items-center gap-3">
+                        <i data-lucide="bot" class="w-4 h-4 text-crimson flex-shrink-0"></i>
+                        <span id="s5-p4">❌ Do NOT upload or feed the original artwork or character designs into AI image generators (e.g., img2img, reference images, LoRA) to create new images.</span>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-crimson/10 border border-crimson/30 text-rose-200 flex items-center gap-3">
                         <i data-lucide="shield-alert" class="w-4 h-4 text-crimson flex-shrink-0"></i>
                         <span id="s5-p3">❌ Do NOT use the character for hate speech (racism, religion, politics) or illegal/defamatory purposes.</span>
+                    </div>
+
+                    <!-- Penalties -->
+                    <div class="mt-2 p-4 rounded-xl bg-obsidian/70 border border-crimson/40 space-y-2">
+                        <div class="flex items-center gap-2 font-semibold text-white">
+                            <i data-lucide="gavel" class="w-4 h-4 text-crimson"></i>
+                            <span id="s5-pen-title">Consequences of Violations</span>
+                        </div>
+                        <p id="s5-pen-intro" class="text-xs text-mutedText pl-6">
+                            Violating any of these Terms may result in one or more of the following:
+                        </p>
+                        <ul class="text-xs text-rose-200/90 pl-10 list-disc space-y-1">
+                            <li id="s5-pen-1">Revocation of all usage rights (including commercial rights), with no refund.</li>
+                            <li id="s5-pen-2">A request to remove all infringing content immediately.</li>
+                            <li id="s5-pen-3">A permanent ban from future ALMA auctions and purchases.</li>
+                        </ul>
                     </div>
                 </div>
             </section>
 
             <!-- Section 6: Payment & Refund -->
-            <section id="section-6" class="tos-card bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
+            <section id="section-6" class="tos-card scroll-mt-32 bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
                 <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/10 flex-wrap gap-2">
                     <div class="flex items-center gap-3">
                         <div class="p-2.5 rounded-xl bg-crimson/15 text-crimson border border-crimson/30">
@@ -454,7 +537,7 @@
 
                     <!-- Accepted Payment Badges -->
                     <div class="flex items-center gap-2">
-                        <span class="text-[10px] text-mutedText uppercase">Accepted:</span>
+                        <span id="s6-accepted" class="text-[10px] text-mutedText uppercase">Accepted:</span>
                         <span class="px-2.5 py-1 rounded bg-surface border border-white/15 text-xs text-white font-medium flex items-center gap-1">
                             <i data-lucide="globe" class="w-3.5 h-3.5 text-blue-400"></i> Wise
                         </span>
@@ -468,7 +551,14 @@
                     <div class="p-4 rounded-xl bg-surface/80 border border-white/5 space-y-1">
                         <span id="s6-time-title" class="font-semibold text-white block">✦ Payment Timeframe</span>
                         <p id="s6-time-desc" class="text-xs text-mutedText leading-relaxed">
-                            Payment must be completed within 24–48 hours after purchase confirmation. (If you face any issues, please notify ALMA in advance).
+                            Payment must be completed within 24–48 hours after purchase confirmation. (If you face any issues, please notify ALMA in advance). If payment is not completed within this period, the sale will be cancelled and the character will be passed to the runner-up.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-surface/80 border border-white/5 space-y-1">
+                        <span id="s6-fee-title" class="font-semibold text-white block">✦ Transfer Fees</span>
+                        <p id="s6-fee-desc" class="text-xs text-mutedText leading-relaxed">
+                            The buyer covers all transfer fees (Wise, bank, and currency conversion fees). Please make sure the full agreed amount reaches ALMA.
                         </p>
                     </div>
 
@@ -482,12 +572,18 @@
                     <div class="p-4 rounded-xl bg-surface/80 border border-white/5 space-y-1">
                         <span id="s6-refund-title" class="font-semibold text-white block">✦ Final Sales & Refunds</span>
                         <p id="s6-refund-desc" class="text-xs text-mutedText leading-relaxed">
-                            Once digital files have been delivered, all sales are final. No refunds will be granted under any circumstances.
+                            Once digital files have been delivered, all sales are final and no refunds will be granted. If the delivered files are incorrect or corrupted, ALMA will re-send the correct files.
                         </p>
                     </div>
                 </div>
             </section>
 
+        </div>
+
+        <!-- No search results message -->
+        <div id="no-results" class="hidden text-center py-12 space-y-3">
+            <i data-lucide="search-x" class="w-8 h-8 text-mutedText mx-auto"></i>
+            <p id="no-results-text" class="text-sm text-mutedText">No matching terms found. Try a different keyword.</p>
         </div>
 
     </main>
@@ -496,7 +592,10 @@
     <footer class="border-t border-white/10 bg-obsidian py-8 px-4 text-center space-y-6">
         <div class="max-w-5xl mx-auto space-y-3">
             <p id="follow-heading" class="text-xs sm:text-sm font-semibold text-white tracking-wide">
-                Follow ALMA
+                Follow & Contact ALMA
+            </p>
+            <p id="contact-note" class="text-xs text-mutedText max-w-xl mx-auto leading-relaxed">
+                Questions, commercial rights upgrades, or ownership transfers? Contact ALMA through any channel below.
             </p>
             <div class="flex flex-wrap items-center justify-center gap-3">
                 <a href="https://www.facebook.com/AlMarSalZ/" target="_blank" rel="noopener noreferrer"
@@ -543,14 +642,35 @@
 
     <!-- JavaScript Interactions & Internationalization (EN / TH) -->
     <script>
-        // Dictionary for English and Thai
+        // ---------- Currency sample data (sample figures only, not a live rate) ----------
+        const currencyData = {
+            THB: {
+                symbol: '฿',
+                ab: 2000, unlock: 1200, bid: 1000,
+                ex: { sb: 1000, unlock1: 1200, ab: 2000, bid1: 1000, unlock2: 1800, bid2: 1700 }
+            },
+            USD: {
+                symbol: '$',
+                ab: 60, unlock: 36, bid: 30,
+                ex: { sb: 30, unlock1: 36, ab: 60, bid1: 30, unlock2: 54, bid2: 51 }
+            }
+        };
+
+        // Commercial total = the higher of (AB + 20%) or (2 x winning bid)
+        function commercialTotal(ab, bid) {
+            return Math.max(ab * 1.2, bid * 2);
+        }
+
+        // ---------- Dictionary for English and Thai ----------
         const i18nData = {
             en: {
                 navSubtitle: "Official Terms of Service",
                 searchPlaceholder: "Search TOS keywords...",
+                noResults: "No matching terms found. Try a different keyword.",
                 heroBadge: "Official Guidelines & Rules",
                 heroTitle: "Character Adoptable Terms of Service",
                 heroDesc: "Please read carefully before bidding, purchasing, or offering for ALMA's character designs. By acquiring a character, you automatically agree to these terms.",
+                heroUpdated: "Last updated: November 21, 2026",
 
                 navTab1: "1. Usage Rights",
                 navTab2: "2. Modification",
@@ -558,13 +678,22 @@
                 navTab4: "4. Credit",
                 navTab5: "5. Prohibited",
                 navTab6: "6. Payment & Refund",
-                
+
                 calcTitle: "Commercial Right Fee Calculator",
-                calcSubtitle: "Commercial rights require +30% of the Auto-Buy (AB) price (if not already included in the tier).",
-                calcInputLabel: "Base AB Price",
+                calcSubtitle: "Buying commercial rights later: total price = the higher of AB + 20% or 2× your winning bid (you pay the difference from what you already paid).",
+                calcAbLabel: "AB Price",
+                calcUnlockLabel: "Commercial Unlock Price",
+                calcBidLabel: "Your Winning Bid",
+                calcStatusLabel: "Status",
+                calcIncludedText: "Commercial rights already included",
+                calcNotIncludedText: "Personal use only — upgrade available",
                 calcTotalLabel: "Total w/ Commercial",
+                calcExtraLabel: "Additional to Pay",
+                calcNote: "Prices shown are examples only, not actual prices or live exchange rates (sample rate: $60 ≈ ฿2,000). Please check each post for real prices.",
 
                 s1Heading: "Usage Rights",
+                s1CopyTitle: "Design Ownership",
+                s1CopyDesc: "ALMA is the original designer and continues to hold the copyright of all character designs and original artwork. Once you adopt a character, you're free to use them according to the rights described in these Terms.",
                 s1PersonalTitle: "✦ Personal Use",
                 s1PersonalDesc: "Allowed for profile pictures, fan art, web novels/stories, roleplay communities/games, or commissioning other artists as desired.",
                 s1CommHeader: "Commercial Use Tiers",
@@ -573,9 +702,10 @@
                 s1CommIncDesc: "Unlocked when winning the auction at or above the post's commercial milestone price, purchasing at Auto-Buy (AB), or when the post explicitly states commercial rights are included from SB. Allows merchandise (acrylic standees, keychains, prints, handmade goods), main characters in monetized games/novels, or VTuber models.",
                 s1CommNotIncTitle: "Commercial Rights NOT Included",
                 s1CommNotIncBadge: "Below Milestone",
-                s1CommNotIncDesc: "Applies when winning the bid below the post's commercial unlock threshold (not all SB bids exclude commercial rights—check each post's specific terms). You may NOT produce merchandise or use for direct profit, though you can contact ALMA anytime to unlock commercial rights for +30% of the AB price.",
-                s1ExampleTitle: "Example of Bid Milestone Unlock:",
-                s1ExampleDesc: "Suppose a post lists: SB 1,000 / Commercial Unlock at 1,500 / AB 2,000 — Winning at 1,200 grants Personal Use (can pay +30% AB later to unlock). Winning at 1,500+ or buying at AB 2,000 grants Commercial Rights immediately.",
+                s1CommNotIncDesc: "Applies when winning the bid below the post's commercial unlock threshold (not all SB bids exclude commercial rights—check each post's specific terms). You may NOT produce merchandise or use for direct profit. You can contact ALMA anytime to purchase commercial rights: the total price is the higher of AB + 20% or 2× your winning bid, and you only pay the difference from what you have already paid.",
+                s1ExampleTitle: "Example of Bid Milestone Unlock (sample prices only):",
+                s1Example1: (v) => `<strong class="text-silverText">Example 1</strong> — SB ${v.sb} / Commercial Unlock at ${v.unlock1} / AB ${v.ab}: winning at ${v.unlock1} or above, or buying at AB ${v.ab}, includes Commercial Rights immediately. Winning at ${v.bid1} grants Personal Use only; to add commercial rights later, the total price is AB + 20% = ${v.total1} (you pay ${v.extra1} more than the ${v.bid1} already paid).`,
+                s1Example2: (v) => `<strong class="text-silverText">Example 2</strong> — Commercial Unlock at ${v.unlock2} / AB ${v.ab}: winning at ${v.bid2} grants Personal Use only. AB + 20% would be ${v.abPlus}, which is less than 2× your bid, so the commercial total becomes 2× the winning bid = ${v.total2} (you pay ${v.extra2} more). This keeps the price from falling below 2× the winning bid.`,
 
                 s2Heading: "Design Modification",
                 s2Desc: "✦ When creating new artwork, you are free to adjust the hairstyle, clothing, accessories, gender, or minor details as you see fit, provided the original core design remains recognizable.",
@@ -587,36 +717,50 @@
                 s3TradeDesc: "You may freely trade the character for other adoptables or offer them as a gift to another person.",
                 s3NoticeTitle: "Owner Transfer Notice",
                 s3NoticeDesc: "Please notify ALMA of the new owner's name/handle whenever ownership changes. These Terms automatically transfer to future owners.",
+                s3RightsTitle: "Rights Stay As They Were",
+                s3RightsDesc: "Usage rights transfer with the character exactly as they were. If commercial rights were included or already purchased, the new owner keeps them; if not, the new owner has Personal Use only and may purchase the commercial upgrade from ALMA as described in Section 1.",
 
                 s4Heading: "Credit Requirements",
                 s4OrigTitle: "Original Artwork Files",
-                s4OrigDesc: "Whenever posting or using ALMA's original artwork image files, you must clearly credit the designer: Credit: ALMA.",
+                s4OrigDesc: `Whenever posting or using ALMA's original artwork image files, you must clearly credit the designer: <strong class="text-crimson font-mono">Credit: ALMA</strong>.`,
                 s4NewTitle: "New / Commissioned Art",
                 s4NewDesc: "For newly drawn artwork created by yourself or commissioned from other artists, designer credit is optional (though always deeply appreciated!).",
 
                 s5Heading: "Prohibited Actions",
                 s5P1: "❌ Do NOT claim yourself as the original designer or artist of the original artwork.",
                 s5P2: "❌ Strictly NO using original artwork or character designs for AI training or minting/creating NFTs.",
+                s5P4: "❌ Do NOT upload or feed the original artwork or character designs into AI image generators (e.g., img2img, reference images, LoRA) to create new images.",
                 s5P3: "❌ Do NOT use the character for hate speech (racism, religion, politics) or illegal/defamatory purposes.",
+                s5PenTitle: "Consequences of Violations",
+                s5PenIntro: "Violating any of these Terms may result in one or more of the following:",
+                s5Pen1: "Revocation of all usage rights (including commercial rights), with no refund.",
+                s5Pen2: "A request to remove all infringing content immediately.",
+                s5Pen3: "A permanent ban from future ALMA auctions and purchases.",
 
                 s6Heading: "Payment & Refund",
+                s6Accepted: "Accepted:",
                 s6TimeTitle: "✦ Payment Timeframe",
-                s6TimeDesc: "Payment must be completed within 24–48 hours after purchase confirmation. (If you face any issues, please notify ALMA in advance).",
+                s6TimeDesc: "Payment must be completed within 24–48 hours after purchase confirmation. (If you face any issues, please notify ALMA in advance). If payment is not completed within this period, the sale will be cancelled and the character will be passed to the runner-up.",
+                s6FeeTitle: "✦ Transfer Fees",
+                s6FeeDesc: "The buyer covers all transfer fees (Wise, bank, and currency conversion fees). Please make sure the full agreed amount reaches ALMA.",
                 s6PlanTitle: "✦ Payment Plans / Installments",
                 s6PlanDesc: "Installment plans must be completed within 1 month. Files will be delivered upon full payment. If a payment plan is canceled by the buyer, NO refunds will be issued.",
                 s6RefundTitle: "✦ Final Sales & Refunds",
-                s6RefundDesc: "Once digital files have been delivered, all sales are final. No refunds will be granted under any circumstances.",
+                s6RefundDesc: "Once digital files have been delivered, all sales are final and no refunds will be granted. If the delivered files are incorrect or corrupted, ALMA will re-send the correct files.",
 
-                followHeading: "Follow ALMA",
+                followHeading: "Follow & Contact ALMA",
+                contactNote: "Questions, commercial rights upgrades, or ownership transfers? Contact ALMA through any channel below.",
                 footerCopy: "ALMA — All Rights Reserved. Adoptable Terms of Service.",
                 backToTop: "Back to Top"
             },
             th: {
                 navSubtitle: "ข้อตกลงการใช้งานตัวละครอย่างเป็นทางการ",
                 searchPlaceholder: "ค้นหาคำสำคัญในข้อตกลง...",
+                noResults: "ไม่พบข้อความที่ตรงกับคำค้นหา ลองใช้คำอื่นดูนะ",
                 heroBadge: "กฎและข้อตกลงอย่างเป็นทางการ",
                 heroTitle: "ข้อตกลงการใช้งานตัวละคร (Terms of Service)",
                 heroDesc: "กรุณาอ่านรายละเอียดอย่างถี่ถ้วนก่อนทำการประมูล ซื้อ หรือยื่นข้อเสนอสำหรับตัวละครของ ALMA การครอบครองตัวละครถือว่ายอมรับข้อตกลงนี้โดยอัตโนมัติ",
+                heroUpdated: "อัปเดตล่าสุด: 21 พฤศจิกายน 2569",
 
                 navTab1: "1. สิทธิ์การใช้งาน",
                 navTab2: "2. การดัดแปลง",
@@ -624,13 +768,22 @@
                 navTab4: "4. การให้เครดิต",
                 navTab5: "5. ข้อห้ามเด็ดขาด",
                 navTab6: "6. การชำระเงิน & คืนเงิน",
-                
+
                 calcTitle: "เครื่องคำนวณสิทธิ์เชิงพาณิชย์",
-                calcSubtitle: "สิทธิ์เชิงพาณิชย์คิดเพิ่ม +30% ของราคา AB (หากแพ็กเกจนั้นยังไม่ได้รวมสิทธิ์เชิงพาณิชย์)",
-                calcInputLabel: "ราคา AB ตั้งต้น",
+                calcSubtitle: "ซื้อสิทธิ์เชิงพาณิชย์ภายหลัง: ราคารวม = ค่าที่สูงกว่าระหว่าง AB + 20% หรือ 2 เท่าของราคาบิดที่ชนะ (จ่ายเพิ่มเฉพาะส่วนต่างจากที่จ่ายไปแล้ว)",
+                calcAbLabel: "ราคา AB",
+                calcUnlockLabel: "ราคาปลดล็อกเชิงพาณิชย์",
+                calcBidLabel: "ราคาบิดที่ชนะ",
+                calcStatusLabel: "สถานะ",
+                calcIncludedText: "รวมสิทธิ์เชิงพาณิชย์แล้ว",
+                calcNotIncludedText: "ใช้งานส่วนตัวเท่านั้น — ซื้อสิทธิ์เพิ่มได้",
                 calcTotalLabel: "ราคารวมสิทธิ์เชิงพาณิชย์",
+                calcExtraLabel: "ต้องจ่ายเพิ่ม",
+                calcNote: "ราคาที่แสดงเป็นเพียงตัวอย่างเท่านั้น ไม่ใช่ราคาจริงหรืออัตราแลกเปลี่ยนจริง (อัตราตัวอย่าง: $60 ≈ ฿2,000) กรุณาดูราคาจริงในแต่ละโพสต์",
 
                 s1Heading: "สิทธิ์การใช้งาน (Usage Rights)",
+                s1CopyTitle: "ความเป็นเจ้าของงานออกแบบ",
+                s1CopyDesc: "ALMA เป็นผู้ออกแบบต้นฉบับ และยังเป็นเจ้าของลิขสิทธิ์ดีไซน์ตัวละครและภาพต้นฉบับทั้งหมดอยู่ เมื่อรับตัวละครไปแล้ว คุณสามารถนำไปใช้งานได้ตามสิทธิ์ที่ระบุในข้อตกลงนี้",
                 s1PersonalTitle: "✦ การใช้งานส่วนตัว (Personal Use)",
                 s1PersonalDesc: "สามารถนำไปใช้ตั้งเป็นรูปโปรไฟล์ วาดแฟนอาร์ต ใช้ในนิยาย/คอมมู/เกม Roleplay หรือนำไปสั่งวาดคอมมิชชันต่อได้ตามต้องการ",
                 s1CommHeader: "ระดับสิทธิ์การใช้งานเชิงพาณิชย์",
@@ -639,9 +792,10 @@
                 s1CommIncDesc: "ได้รับสิทธิ์เมื่อชนะประมูลถึงราคาเกณฑ์ปลดล็อกที่ระบุในโพสต์, ซื้อในราคา AB, หรือเป็นตัวละครที่ระบุว่าแถมสิทธิ์เชิงพาณิชย์ตั้งแต่ราคาเปิด (SB) สามารถนำไปผลิตสินค้า (สแตนดี้ พวงกุญแจ สินค้าทำมือ) ใช้ในนิยาย/เกมที่สร้างรายได้ หรือเป็นโมเดล VTuber ได้",
                 s1CommNotIncTitle: "ยังไม่รวมสิทธิ์เชิงพาณิชย์",
                 s1CommNotIncBadge: "ต่ำกว่าเกณฑ์ปลดล็อก",
-                s1CommNotIncDesc: "สำหรับผู้ที่ชนะการประมูลในราคาที่ยังไม่ถึงเกณฑ์ปลดล็อกสิทธิ์เชิงพาณิชย์ที่ระบุในโพสต์ (ราคา SB ไม่ได้หมายความว่าไม่รวมสิทธิ์เชิงพาณิชย์เสมอไป กรุณาดูเงื่อนไขในแต่ละโพสต์) ห้ามผลิตสินค้าจำหน่ายหรือหารายได้โดยตรง แต่สามารถติดต่อจ่ายเพิ่ม +30% ของราคา AB เพื่อปลดล็อกภายหลังได้",
-                s1ExampleTitle: "ตัวอย่างเงื่อนไขการปลดล็อกสิทธิ์:",
-                s1ExampleDesc: "สมมติโพสต์ระบุ: เปิดประมูล (SB) 1,000 / ปลดล็อกเชิงพาณิชย์ที่ 1,500 / AB 2,000 — หากจบประมูลที่ 1,200 จะได้รับสิทธิ์ใช้งานส่วนตัว (สามารถจ่ายเพิ่ม +30% ของราคา AB ทีหลังได้) แต่หากบิดจบที่ 1,500 ขึ้นไป หรือกด AB 2,000 จะได้รับสิทธิ์เชิงพาณิชย์ทันที",
+                s1CommNotIncDesc: "สำหรับผู้ที่ชนะการประมูลในราคาที่ยังไม่ถึงเกณฑ์ปลดล็อกสิทธิ์เชิงพาณิชย์ที่ระบุในโพสต์ (ราคา SB ไม่ได้หมายความว่าไม่รวมสิทธิ์เชิงพาณิชย์เสมอไป กรุณาดูเงื่อนไขในแต่ละโพสต์) ห้ามผลิตสินค้าจำหน่ายหรือหารายได้โดยตรง สามารถติดต่อ ALMA เพื่อซื้อสิทธิ์เชิงพาณิชย์ภายหลังได้ตลอด โดยราคารวมคือค่าที่สูงกว่าระหว่าง AB + 20% หรือ 2 เท่าของราคาบิดที่ชนะ และจ่ายเพิ่มเฉพาะส่วนต่างจากที่จ่ายไปแล้ว",
+                s1ExampleTitle: "ตัวอย่างเงื่อนไขการปลดล็อกสิทธิ์ (เป็นราคาตัวอย่างเท่านั้น):",
+                s1Example1: (v) => `<strong class="text-silverText">ตัวอย่างที่ 1</strong> — เปิดประมูล (SB) ${v.sb} / ปลดล็อกเชิงพาณิชย์ที่ ${v.unlock1} / AB ${v.ab}: หากจบประมูลที่ ${v.unlock1} ขึ้นไป หรือกด AB ${v.ab} จะได้รับสิทธิ์เชิงพาณิชย์ทันที แต่หากจบที่ ${v.bid1} จะได้สิทธิ์ใช้งานส่วนตัวเท่านั้น และหากต้องการซื้อสิทธิ์เชิงพาณิชย์ภายหลัง ราคารวมจะเป็น AB + 20% = ${v.total1} (จ่ายเพิ่มอีก ${v.extra1} จากที่จ่ายไปแล้ว ${v.bid1})`,
+                s1Example2: (v) => `<strong class="text-silverText">ตัวอย่างที่ 2</strong> — ปลดล็อกเชิงพาณิชย์ที่ ${v.unlock2} / AB ${v.ab}: หากจบประมูลที่ ${v.bid2} จะได้สิทธิ์ใช้งานส่วนตัวเท่านั้น โดย AB + 20% จะเป็น ${v.abPlus} ซึ่งต่ำกว่า 2 เท่าของราคาบิด ราคารวมสิทธิ์เชิงพาณิชย์จึงคิดเป็น 2 เท่าของราคาบิด = ${v.total2} (จ่ายเพิ่มอีก ${v.extra2}) เพื่อป้องกันไม่ให้ราคาต่ำกว่า 2 เท่าของราคาบิด`,
 
                 s2Heading: "การดัดแปลงดีไซน์ (Design Modification)",
                 s2Desc: "✦ ในกรณีที่วาดขึ้นใหม่ สามารถปรับเปลี่ยนทรงผม ชุด เครื่องประดับ เพศ หรือรายละเอียดเล็กน้อยของตัวละครได้ตามความเหมาะสม แต่ขอให้ยังคงเค้าโครงดีไซน์เดิมไว้",
@@ -653,27 +807,39 @@
                 s3TradeDesc: "สามารถนำไปแลกเปลี่ยนกับตัวละครอื่น หรือยกให้ผู้อื่นเป็นของขวัญได้ตามปกติ",
                 s3NoticeTitle: "การแจ้งเปลี่ยนเจ้าของ",
                 s3NoticeDesc: "กรุณาแจ้งชื่อ/แอคเคาท์ของเจ้าของคนใหม่ให้ ALMA ทราบทุกครั้ง เพื่อป้องกันการแอบอ้างสิทธิ์ ข้อตกลงนี้จะถูกส่งต่อไปยังเจ้าของคนถัดไปโดยอัตโนมัติ",
+                s3RightsTitle: "สิทธิ์เป็นไปตามเดิม",
+                s3RightsDesc: "สิทธิ์การใช้งานจะติดไปกับตัวละครตามสถานะเดิมทุกประการ หากตัวละครรวมสิทธิ์เชิงพาณิชย์แล้วหรือเคยซื้อสิทธิ์เพิ่มแล้ว เจ้าของคนใหม่จะได้สิทธิ์นั้นต่อ แต่หากยังไม่มี เจ้าของคนใหม่จะได้เฉพาะสิทธิ์ใช้งานส่วนตัว และสามารถซื้อสิทธิ์เชิงพาณิชย์เพิ่มกับ ALMA ได้ตามเงื่อนไขในหัวข้อที่ 1",
 
                 s4Heading: "การให้เครดิต (Credit)",
                 s4OrigTitle: "ไฟล์ภาพต้นฉบับ",
-                s4OrigDesc: "เมื่อนำไฟล์ภาพต้นฉบับของผู้วาดไปโพสต์ใช้งาน กรุณาให้เครดิตผู้วาด/ผู้ออกแบบเสมอ (เครดิต: ALMA)",
+                s4OrigDesc: `เมื่อนำไฟล์ภาพต้นฉบับของผู้วาดไปโพสต์ใช้งาน กรุณาให้เครดิตผู้วาด/ผู้ออกแบบเสมอ <strong class="text-crimson font-mono">(เครดิต: ALMA)</strong>`,
                 s4NewTitle: "ภาพวาดใหม่ / จ้างคอมมิชชัน",
                 s4NewDesc: "หากเป็นภาพที่วาดขึ้นใหม่เองหรือจ้างนักวาดท่านอื่นวาด จะใส่เครดิตผู้ออกแบบหรือไม่ก็ได้ตามสะดวก (แต่หากใส่ให้จะขอบคุณมากครับ)",
 
                 s5Heading: "ข้อห้ามเด็ดขาด (Prohibited Actions)",
                 s5P1: "❌ ห้ามแอบอ้างว่าตนเองเป็นผู้ออกแบบหรือผู้วาดภาพต้นฉบับ",
                 s5P2: "❌ ห้ามนำไฟล์ภาพต้นฉบับหรือดีไซน์ไปใช้ในการเทรน AI (AI Training) หรือนำไปสร้างเป็นผลงาน NFT โดยเด็ดขาด",
+                s5P4: "❌ ห้ามนำไฟล์ภาพต้นฉบับหรือดีไซน์ไปใส่ในโปรแกรม AI สร้างภาพ (เช่น img2img, ภาพอ้างอิง, LoRA) เพื่อสร้างภาพใหม่",
                 s5P3: "❌ ห้ามนำไปใช้ในเชิงเหยียดเชื้อชาติ ศาสนา การเมือง หรือสร้างความเสื่อมเสียทางกฎหมาย",
+                s5PenTitle: "บทลงโทษเมื่อละเมิดข้อตกลง",
+                s5PenIntro: "หากฝ่าฝืนข้อตกลงข้อใดข้อหนึ่ง อาจได้รับบทลงโทษอย่างใดอย่างหนึ่งหรือหลายอย่างดังนี้:",
+                s5Pen1: "เพิกถอนสิทธิ์การใช้งานทั้งหมด (รวมถึงสิทธิ์เชิงพาณิชย์) โดยไม่คืนเงิน",
+                s5Pen2: "ขอให้ลบผลงานที่ละเมิดทั้งหมดทันที",
+                s5Pen3: "แบนถาวรจากการประมูลและการซื้อตัวละครของ ALMA ในครั้งต่อไป",
 
                 s6Heading: "การชำระเงินและการคืนเงิน",
+                s6Accepted: "รับชำระ:",
                 s6TimeTitle: "✦ ระยะเวลาการชำระเงิน",
-                s6TimeDesc: "กรุณาชำระเงินภายใน 24–48 ชั่วโมงหลังจากตกลงซื้อขาย (หากติดขัดสามารถแจ้งล่วงหน้าได้)",
+                s6TimeDesc: "กรุณาชำระเงินภายใน 24–48 ชั่วโมงหลังจากตกลงซื้อขาย (หากติดขัดสามารถแจ้งล่วงหน้าได้) หากไม่ชำระภายในกำหนด จะยกเลิกการซื้อขายและมอบสิทธิ์ให้ผู้ที่ได้อันดับรองลงมาแทน",
+                s6FeeTitle: "✦ ค่าธรรมเนียมการโอน",
+                s6FeeDesc: "ผู้ซื้อเป็นผู้รับผิดชอบค่าธรรมเนียมการโอนทั้งหมด (ค่าธรรมเนียม Wise ธนาคาร และค่าแปลงสกุลเงิน) กรุณาตรวจสอบให้ ALMA ได้รับยอดเต็มตามที่ตกลง",
                 s6PlanTitle: "✦ การผ่อนชำระ (Installment Plan)",
                 s6PlanDesc: "ผ่อนชำระได้ภายใน 1 เดือน (ส่งมอบไฟล์ภาพเมื่อชำระครบถ้วน) หากผ่อนแล้วยกเลิกจะไม่มีการคืนเงินทุกกรณี",
                 s6RefundTitle: "✦ การคืนเงิน",
-                s6RefundDesc: "เมื่อส่งมอบไฟล์งานแล้ว ขอสงวนสิทธิ์ในการไม่คืนเงินทุกกรณี",
+                s6RefundDesc: "เมื่อส่งมอบไฟล์งานแล้ว ขอสงวนสิทธิ์ในการไม่คืนเงิน แต่หากไฟล์ที่ส่งมอบผิดหรือเสียหาย ALMA จะจัดส่งไฟล์ที่ถูกต้องให้ใหม่",
 
-                followHeading: "ช่องทางการติดตาม ALMA",
+                followHeading: "ติดตามและติดต่อ ALMA",
+                contactNote: "สอบถามข้อมูล ซื้อสิทธิ์เชิงพาณิชย์เพิ่ม หรือแจ้งเปลี่ยนเจ้าของ ติดต่อ ALMA ได้ทางช่องทางด้านล่าง",
                 footerCopy: "ALMA — สงวนลิขสิทธิ์ทั้งหมด ข้อตกลงการใช้งานตัวละคร (Terms of Service)",
                 backToTop: "กลับขึ้นด้านบน"
             }
@@ -681,71 +847,107 @@
 
         let currentLang = 'en';
         let currentCurrency = 'USD';
+        let calcEdited = false; // true once the visitor types their own numbers
 
-        // Switch Currency function (THB / USD)
-        function switchCurrency(currency, resetDefault = false) {
+        // ---------- Helpers ----------
+        function money(value, compact = false) {
+            const cur = currencyData[currentCurrency];
+            const rounded = Math.round(value * 100) / 100;
+            const opts = (currentCurrency === 'USD' && !compact)
+                ? { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+                : { minimumFractionDigits: 0, maximumFractionDigits: 2 };
+            return cur.symbol + rounded.toLocaleString('en-US', opts);
+        }
+
+        function setText(id, value) {
+            const el = document.getElementById(id);
+            if (el && typeof value === 'string') el.textContent = value;
+        }
+
+        // For strings that intentionally contain markup (e.g. <strong>)
+        function setHTML(id, value) {
+            const el = document.getElementById(id);
+            if (el && typeof value === 'string') el.innerHTML = value;
+        }
+
+        // ---------- Examples that follow the selected currency ----------
+        function renderExamples() {
+            const data = i18nData[currentLang];
+            const ex = currencyData[currentCurrency].ex;
+            const total1 = commercialTotal(ex.ab, ex.bid1);
+            const total2 = commercialTotal(ex.ab, ex.bid2);
+
+            const v = {
+                sb: money(ex.sb, true),
+                unlock1: money(ex.unlock1, true),
+                ab: money(ex.ab, true),
+                bid1: money(ex.bid1, true),
+                unlock2: money(ex.unlock2, true),
+                bid2: money(ex.bid2, true),
+                abPlus: money(ex.ab * 1.2, true),
+                total1: money(total1, true),
+                extra1: money(total1 - ex.bid1, true),
+                total2: money(total2, true),
+                extra2: money(total2 - ex.bid2, true)
+            };
+
+            setHTML('s1-example-desc', data.s1Example1(v));
+            setHTML('s1-example2-desc', data.s1Example2(v));
+        }
+
+        // ---------- Currency switch (THB / USD) ----------
+        function switchCurrency(currency, forceReset = false) {
             currentCurrency = currency;
             const thbBtn = document.getElementById('curr-thb-btn');
             const usdBtn = document.getElementById('curr-usd-btn');
-            const symbolSpan = document.getElementById('calc-currency-symbol');
-            const abInput = document.getElementById('ab-price-input');
+            const activeCls = "px-2.5 py-1 rounded-md font-semibold transition-all duration-200 bg-crimson text-white shadow";
+            const idleCls = "px-2.5 py-1 rounded-md font-semibold transition-all duration-200 text-mutedText hover:text-white";
 
-            if (currency === 'THB') {
-                thbBtn.className = "px-2.5 py-1 rounded-md font-semibold transition-all duration-200 bg-crimson text-white shadow";
-                usdBtn.className = "px-2.5 py-1 rounded-md font-semibold transition-all duration-200 text-mutedText hover:text-white";
-                symbolSpan.innerText = "฿";
-                if (resetDefault || abInput.value === "60" || abInput.value === "") {
-                    abInput.value = "2000";
-                }
-            } else {
-                usdBtn.className = "px-2.5 py-1 rounded-md font-semibold transition-all duration-200 bg-crimson text-white shadow";
-                thbBtn.className = "px-2.5 py-1 rounded-md font-semibold transition-all duration-200 text-mutedText hover:text-white";
-                symbolSpan.innerText = "$";
-                if (resetDefault || abInput.value === "2000" || abInput.value === "") {
-                    abInput.value = "60";
-                }
+            thbBtn.className = currency === 'THB' ? activeCls : idleCls;
+            usdBtn.className = currency === 'USD' ? activeCls : idleCls;
+
+            document.querySelectorAll('.calc-currency-symbol').forEach(el => {
+                el.textContent = currencyData[currency].symbol;
+            });
+
+            // Reset to sample defaults only if the visitor hasn't typed their own numbers
+            // (or if they explicitly pressed a currency button)
+            if (forceReset || !calcEdited) {
+                const d = currencyData[currency];
+                document.getElementById('ab-price-input').value = d.ab;
+                document.getElementById('unlock-price-input').value = d.unlock;
+                document.getElementById('bid-price-input').value = d.bid;
+                if (forceReset) calcEdited = false;
             }
 
+            renderExamples();
             calculateCommercialFee();
         }
 
-        // Switch Language function
+        // ---------- Language switch ----------
         function switchLanguage(lang) {
             currentLang = lang;
             const data = i18nData[lang];
 
-            // Safely set text content only when target element exists
-            const setText = (id, value) => {
-                const el = document.getElementById(id);
-                if (el && typeof value === 'string') {
-                    el.innerText = value;
-                }
-            };
-
-            // Update Toggle Button styles
+            // Toggle button styles
             const enBtn = document.getElementById('lang-en-btn');
             const thBtn = document.getElementById('lang-th-btn');
-            if (enBtn && thBtn) {
-                if (lang === 'en') {
-                    enBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 bg-crimson text-white shadow";
-                    thBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 text-mutedText hover:text-white";
-                } else {
-                    thBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 bg-crimson text-white shadow";
-                    enBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 text-mutedText hover:text-white";
-                }
-            }
+            const activeCls = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 bg-crimson text-white shadow";
+            const idleCls = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 text-mutedText hover:text-white";
+            enBtn.className = lang === 'en' ? activeCls : idleCls;
+            thBtn.className = lang === 'th' ? activeCls : idleCls;
 
-            // Update search placeholder
+            document.documentElement.lang = lang;
+
             const searchInput = document.getElementById('tos-search');
-            if (searchInput) {
-                searchInput.placeholder = data.searchPlaceholder;
-            }
+            if (searchInput) searchInput.placeholder = data.searchPlaceholder;
 
-            // Update text elements safely
             setText('nav-subtitle', data.navSubtitle);
             setText('hero-badge', data.heroBadge);
             setText('hero-title', data.heroTitle);
             setText('hero-desc', data.heroDesc);
+            setText('hero-updated', data.heroUpdated);
+            setText('no-results-text', data.noResults);
 
             setText('nav-tab-1', data.navTab1);
             setText('nav-tab-2', data.navTab2);
@@ -756,10 +958,17 @@
 
             setText('calc-title', data.calcTitle);
             setText('calc-subtitle', data.calcSubtitle);
-            setText('calc-input-label', data.calcInputLabel);
+            setText('calc-ab-label', data.calcAbLabel);
+            setText('calc-unlock-label', data.calcUnlockLabel);
+            setText('calc-bid-label', data.calcBidLabel);
+            setText('calc-status-label', data.calcStatusLabel);
             setText('calc-total-label', data.calcTotalLabel);
+            setText('calc-extra-label', data.calcExtraLabel);
+            setText('calc-note', data.calcNote);
 
             setText('s1-heading', data.s1Heading);
+            setText('s1-copy-title', data.s1CopyTitle);
+            setText('s1-copy-desc', data.s1CopyDesc);
             setText('s1-personal-title', data.s1PersonalTitle);
             setText('s1-personal-desc', data.s1PersonalDesc);
             setText('s1-comm-header', data.s1CommHeader);
@@ -770,7 +979,6 @@
             setText('s1-comm-notinc-badge', data.s1CommNotIncBadge);
             setText('s1-comm-notinc-desc', data.s1CommNotIncDesc);
             setText('s1-example-title', data.s1ExampleTitle);
-            setText('s1-example-desc', data.s1ExampleDesc);
 
             setText('s2-heading', data.s2Heading);
             setText('s2-desc', data.s2Desc);
@@ -782,79 +990,113 @@
             setText('s3-trade-desc', data.s3TradeDesc);
             setText('s3-notice-title', data.s3NoticeTitle);
             setText('s3-notice-desc', data.s3NoticeDesc);
+            setText('s3-rights-title', data.s3RightsTitle);
+            setText('s3-rights-desc', data.s3RightsDesc);
 
             setText('s4-heading', data.s4Heading);
             setText('s4-orig-title', data.s4OrigTitle);
-            setText('s4-orig-desc', data.s4OrigDesc);
+            setHTML('s4-orig-desc', data.s4OrigDesc);
             setText('s4-new-title', data.s4NewTitle);
             setText('s4-new-desc', data.s4NewDesc);
 
             setText('s5-heading', data.s5Heading);
             setText('s5-p1', data.s5P1);
             setText('s5-p2', data.s5P2);
+            setText('s5-p4', data.s5P4);
             setText('s5-p3', data.s5P3);
+            setText('s5-pen-title', data.s5PenTitle);
+            setText('s5-pen-intro', data.s5PenIntro);
+            setText('s5-pen-1', data.s5Pen1);
+            setText('s5-pen-2', data.s5Pen2);
+            setText('s5-pen-3', data.s5Pen3);
 
             setText('s6-heading', data.s6Heading);
+            setText('s6-accepted', data.s6Accepted);
             setText('s6-time-title', data.s6TimeTitle);
             setText('s6-time-desc', data.s6TimeDesc);
+            setText('s6-fee-title', data.s6FeeTitle);
+            setText('s6-fee-desc', data.s6FeeDesc);
             setText('s6-plan-title', data.s6PlanTitle);
             setText('s6-plan-desc', data.s6PlanDesc);
             setText('s6-refund-title', data.s6RefundTitle);
             setText('s6-refund-desc', data.s6RefundDesc);
 
             setText('follow-heading', data.followHeading);
+            setText('contact-note', data.contactNote);
             setText('footer-copy', data.footerCopy);
             setText('back-to-top-text', data.backToTop);
 
-            // Sync default currency with selected language
-            switchCurrency(lang === 'th' ? 'THB' : 'USD', true);
+            // Currency follows language (examples + calculator). Typed numbers are kept.
+            switchCurrency(lang === 'th' ? 'THB' : 'USD', false);
+
+            // Keep any active search filter in sync with the new language
+            applySearch();
         }
 
-        // Commercial Right Calculator Logic
+        // ---------- Commercial Right Calculator ----------
+        function onCalcInput() {
+            calcEdited = true;
+            calculateCommercialFee();
+        }
+
+        function readNumber(id) {
+            const n = parseFloat(document.getElementById(id).value);
+            return (isNaN(n) || n < 0) ? 0 : n;
+        }
+
         function calculateCommercialFee() {
-            const abInput = document.getElementById('ab-price-input');
-            const feeSpan = document.getElementById('calculated-fee');
-            const totalSpan = document.getElementById('calculated-total');
+            const data = i18nData[currentLang];
+            const ab = readNumber('ab-price-input');
+            const bid = readNumber('bid-price-input');
+            let unlock = readNumber('unlock-price-input');
+            if (unlock <= 0) unlock = ab; // no unlock price given -> only AB includes commercial rights
 
-            let abPrice = parseFloat(abInput.value);
-            if (isNaN(abPrice) || abPrice < 0) abPrice = 0;
+            const included = bid > 0 && (bid >= unlock || bid >= ab);
+            const total = included ? bid : commercialTotal(ab, bid);
+            const extra = included ? 0 : Math.max(total - bid, 0);
 
-            const fee = abPrice * 0.30;
-            const total = abPrice + fee;
+            const statusBox = document.getElementById('calc-status-box');
+            const statusText = document.getElementById('calc-status-text');
 
-            if (currentCurrency === 'THB') {
-                feeSpan.innerText = `+฿${fee.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
-                totalSpan.innerText = `฿${total.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
+            if (included) {
+                statusBox.className = "p-3 rounded-xl border bg-emerald-950/20 border-emerald-500/30";
+                statusText.className = "text-xs font-semibold text-emerald-300 font-body leading-snug block mt-1";
+                statusText.textContent = data.calcIncludedText;
             } else {
-                feeSpan.innerText = `+$${fee.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-                totalSpan.innerText = `$${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                statusBox.className = "p-3 rounded-xl border bg-amber-950/20 border-amber-500/30";
+                statusText.className = "text-xs font-semibold text-amber-300 font-body leading-snug block mt-1";
+                statusText.textContent = data.calcNotIncludedText;
             }
+
+            document.getElementById('calculated-total').textContent = money(total);
+            document.getElementById('calculated-extra').textContent = (extra > 0 ? '+' : '') + money(extra);
         }
 
-        // Real-time TOS Keyword Search Filter
-        document.getElementById('tos-search').addEventListener('input', function(e) {
-            const term = e.target.value.toLowerCase();
+        // ---------- TOS Keyword Search ----------
+        function applySearch() {
+            const input = document.getElementById('tos-search');
+            const term = (input.value || '').trim().toLowerCase();
             const cards = document.querySelectorAll('.tos-card');
+            let visible = 0;
 
             cards.forEach(card => {
-                const text = card.innerText.toLowerCase();
-                if (text.includes(term)) {
-                    card.style.display = 'block';
-                    card.classList.add('crimson-glow-box');
-                } else {
-                    card.style.display = 'none';
-                    card.classList.remove('crimson-glow-box');
-                }
+                const match = !term || card.textContent.toLowerCase().includes(term);
+                card.style.display = match ? '' : 'none';
+                card.classList.toggle('crimson-glow-box', !!term && match);
+                if (match) visible++;
             });
-        });
 
-        // Initialize Lucide Icons & Default Language on Load
-        window.onload = function() {
+            document.getElementById('no-results').classList.toggle('hidden', visible > 0);
+        }
+
+        document.getElementById('tos-search').addEventListener('input', applySearch);
+
+        // ---------- Init ----------
+        window.onload = function () {
             if (typeof lucide !== 'undefined') {
                 lucide.createIcons();
             }
             switchLanguage('en');
-            calculateCommercialFee();
         };
     </script>
 </body>
