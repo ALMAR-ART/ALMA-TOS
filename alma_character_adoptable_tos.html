@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALMA — Adoptable Terms of Service (TOS)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#0a090d',
+                        surface: '#13111a',
+                        card: '#1a1724',
+                        cardHover: '#231f30',
+                        crimson: {
+                            DEFAULT: '#e11d48',
+                            hover: '#f43f5e',
+                            glow: 'rgba(225, 29, 72, 0.25)',
+                            light: '#ffe4e6'
+                        },
+                        gothicGold: '#d4af37',
+                        silverText: '#e2e8f0',
+                        mutedText: '#94a3b8'
+                    },
+                    fontFamily: {
+                        heading: ['Cinzel', 'serif'],
+                        body: ['Inter', 'Noto Sans Thai', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a090d;
+            color: #e2e8f0;
+            font-family: 'Inter', 'Noto Sans Thai', sans-serif;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(225, 29, 72, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 85% 30%, rgba(147, 51, 234, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 15% 70%, rgba(225, 29, 72, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .gothic-border {
+            border: 1px solid rgba(225, 29, 72, 0.2);
+            position: relative;
+        }
+
+        .gothic-border::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(135deg, rgba(225,29,72,0.4), transparent 40%, transparent 60%, rgba(212,175,55,0.3));
+            z-index: -1;
+            border-radius: inherit;
+            pointer-events: none;
+        }
+
+        .gothic-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(225, 29, 72, 0.5), rgba(212, 175, 55, 0.5), rgba(225, 29, 72, 0.5), transparent);
+        }
+
+        .crimson-glow-box {
+            box-shadow: 0 0 25px rgba(225, 29, 72, 0.12);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a090d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2436;
+            border-radius: 4px;
+            border: 1px solid rgba(225, 29, 72, 0.3);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e11d48;
+        }
+
+        /* Glassmorphism Header */
+        .glass-header {
+            background: rgba(19, 17, 26, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-crimson selection:text-white">
+
+    <!-- Sticky Navigation Header -->
+    <header class="sticky top-0 z-50 glass-header border-b border-crimson/20 px-4 lg:px-8 py-3 transition-all duration-300">
+        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
+            
+            <!-- Logo & Brand -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-crimson/20 border border-crimson flex items-center justify-center shadow-lg shadow-crimson/20">
+                    <i data-lucide="skull" class="w-5 h-5 text-crimson"></i>
+                </div>
+                <div>
+                    <h1 class="font-heading font-bold text-xl tracking-wider text-white flex items-center gap-2">
+                        ALMA <span class="text-xs px-2 py-0.5 rounded bg-crimson/20 text-crimson font-body border border-crimson/30">ADOPTABLES</span>
+                    </h1>
+                    <p class="text-xs text-mutedText" id="nav-subtitle">Official Terms of Service</p>
+                </div>
+            </div>
+
+            <!-- Header Quick Actions & Language Toggle -->
+            <div class="flex items-center gap-3">
+                
+                <!-- Search TOS -->
+                <div class="relative hidden sm:block">
+                    <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-mutedText"></i>
+                    <input type="text" id="tos-search" placeholder="Search TOS keywords..." 
+                           class="w-44 lg:w-56 bg-surface border border-white/10 rounded-full pl-9 pr-4 py-1.5 text-xs text-silverText focus:outline-none focus:border-crimson transition-all">
+                </div>
+
+                <!-- Language Switcher Button -->
+                <div class="flex items-center bg-surface border border-white/15 rounded-full p-1 shadow-inner">
+                    <button id="lang-en-btn" onclick="switchLanguage('en')" 
+                            class="px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 bg-crimson text-white shadow">
+                        EN
+                    </button>
+                    <button id="lang-th-btn" onclick="switchLanguage('th')" 
+                            class="px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 text-mutedText hover:text-white">
+                        TH
+                    </button>
+                </div>
+
+                <!-- Quick Copy TOS Button -->
+                <button onclick="copyCurrentTOS()" 
+                        class="flex items-center gap-2 bg-crimson/10 hover:bg-crimson/20 border border-crimson/40 text-crimson hover:text-white px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 active:scale-95">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    <span id="copy-btn-text">Copy TOS</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-4 py-8 lg:py-12 flex-grow w-full space-y-10">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-4 relative py-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-crimson/10 border border-crimson/30 text-crimson text-xs font-medium tracking-wide uppercase">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span id="hero-badge">Official Guidelines & Rules</span>
+            </div>
+
+            <h2 id="hero-title" class="font-heading text-3xl sm:text-5xl font-extrabold text-white tracking-wide">
+                Character Adoptable Terms of Service
+            </h2>
+
+            <p id="hero-desc" class="max-w-2xl mx-auto text-mutedText text-sm sm:text-base leading-relaxed">
+                Please read carefully before bidding, purchasing, or offering for ALMA's character designs. By acquiring a character, you automatically agree to these terms.
+            </p>
+
+            <!-- Decorative Gothic Divider -->
+            <div class="w-full max-w-md mx-auto pt-4 flex items-center justify-center gap-3">
+                <div class="h-px bg-gradient-to-r from-transparent via-crimson/40 to-transparent flex-grow"></div>
+                <i data-lucide="flame" class="w-4 h-4 text-crimson"></i>
+                <div class="h-px bg-gradient-to-r from-transparent via-crimson/40 to-transparent flex-grow"></div>
+            </div>
+        </section>
+
+        <!-- Quick Jump Navigation Tabs -->
+        <nav class="flex flex-wrap items-center justify-center gap-2 border-b border-white/10 pb-4 text-xs">
+            <a href="#section-1" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-card border border-white/10 hover:border-crimson/40 text-silverText transition-all">1. Usage Rights</a>
+            <a href="#section-2" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-card border border-white/10 hover:border-crimson/40 text-silverText transition-all">2. Modification</a>
+            <a href="#section-3" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-card border border-white/10 hover:border-crimson/40 text-silverText transition-all">3. Resell & Trade</a>
+            <a href="#section-4" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-card border border-white/10 hover:border-crimson/40 text-silverText transition-all">4. Credit</a>
+            <a href="#section-5" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-card border border-white/10 hover:border-crimson/40 text-silverText transition-all text-crimson">5. Prohibited</a>
+            <a href="#section-6" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-card border border-white/10 hover:border-crimson/40 text-silverText transition-all">6. Payment & Refund</a>
+        </nav>
+
+        <!-- Interactive Commercial Calculator Card -->
+        <section class="bg-gradient-to-br from-card via-surface to-card border border-crimson/30 rounded-2xl p-5 sm:p-6 crimson-glow-box relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-crimson/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2 text-crimson font-heading font-semibold text-sm">
+                        <i data-lucide="calculator" class="w-4 h-4"></i>
+                        <span id="calc-title">Commercial Right Fee Calculator</span>
+                    </div>
+                    <p id="calc-subtitle" class="text-xs text-mutedText">
+                        Commercial rights require +30% of the Auto-Buy (AB) price (if not already included in the tier).
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-4 w-full md:w-auto bg-obsidian/60 p-3 rounded-xl border border-white/10">
+                    <div class="space-y-1 flex-1 min-w-[130px]">
+                        <label id="calc-input-label" class="text-[11px] text-mutedText uppercase font-semibold">Base AB Price</label>
+                        <div class="relative">
+                            <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-mutedText text-xs font-bold">$</span>
+                            <input type="number" id="ab-price-input" value="60" min="0" oninput="calculateCommercialFee()"
+                                   class="w-full bg-surface border border-white/15 rounded-lg pl-6 pr-3 py-1.5 text-sm text-white font-mono focus:outline-none focus:border-crimson">
+                        </div>
+                    </div>
+
+                    <div class="text-center font-mono">
+                        <span class="text-xs text-mutedText block">+30% Fee</span>
+                        <span id="calculated-fee" class="text-sm font-bold text-crimson">+$18.00</span>
+                    </div>
+
+                    <div class="h-8 w-px bg-white/10 hidden sm:block"></div>
+
+                    <div class="text-right font-mono flex-1 min-w-[130px]">
+                        <span id="calc-total-label" class="text-[11px] text-mutedText block uppercase">Total w/ Commercial</span>
+                        <span id="calculated-total" class="text-base font-bold text-gothicGold">$78.00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOS Sections Cards Grid -->
+        <div class="space-y-6">
+
+            <!-- Section 1: Usage Rights -->
+            <section id="section-1" class="tos-card bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
+                <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
+                    <div class="p-2.5 rounded-xl bg-crimson/15 text-crimson border border-crimson/30">
+                        <i data-lucide="shield-check" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold text-crimson tracking-wider uppercase block">Section 1</span>
+                        <h3 id="s1-heading" class="font-heading text-lg font-bold text-white">Usage Rights</h3>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-sm text-silverText leading-relaxed">
+                    <!-- Personal Use -->
+                    <div class="p-4 rounded-xl bg-surface/80 border border-white/5 space-y-2">
+                        <div class="flex items-center gap-2 font-semibold text-white">
+                            <i data-lucide="user" class="w-4 h-4 text-crimson"></i>
+                            <span id="s1-personal-title">✦ Personal Use</span>
+                        </div>
+                        <p id="s1-personal-desc" class="text-mutedText text-xs sm:text-sm pl-6">
+                            Allowed for profile pictures, fan art, web novels/stories, roleplay communities/games, or commissioning other artists as desired.
+                        </p>
+                    </div>
+
+                    <!-- Commercial Use Comparison Boxes -->
+                    <div class="space-y-2">
+                        <span id="s1-comm-header" class="font-semibold text-white text-xs uppercase tracking-wider block">Commercial Use Tiers</span>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Commercial Included -->
+                            <div class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/30 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <span id="s1-comm-inc-title" class="font-semibold text-emerald-400 text-xs flex items-center gap-1.5">
+                                        <i data-lucide="check-circle-2" class="w-4 h-4"></i> Commercial Rights Included
+                                    </span>
+                                    <span id="s1-comm-inc-badge" class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/30">Tier AB / Unlocked</span>
+                                </div>
+                                <p id="s1-comm-inc-desc" class="text-xs text-emerald-200/80 leading-relaxed">
+                                    You may use the design for merchandise (acrylic standees, keychains, prints, handmade goods), main characters in monetized games/novels, or as a VTuber model.
+                                </p>
+                            </div>
+
+                            <!-- Commercial Not Included -->
+                            <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-500/30 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <span id="s1-comm-notinc-title" class="font-semibold text-amber-400 text-xs flex items-center gap-1.5">
+                                        <i data-lucide="alert-circle" class="w-4 h-4"></i> Commercial Rights NOT Included
+                                    </span>
+                                    <span id="s1-comm-notinc-badge" class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">Standard / SB</span>
+                                </div>
+                                <p id="s1-comm-notinc-desc" class="text-xs text-amber-200/80 leading-relaxed">
+                                    You may NOT produce merchandise for sale or use the design for direct profit. To unlock commercial rights, please contact ALMA to pay an additional fee (+30% of AB price).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Design Modification -->
+            <section id="section-2" class="tos-card bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
+                <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
+                    <div class="p-2.5 rounded-xl bg-crimson/15 text-crimson border border-crimson/30">
+                        <i data-lucide="palette" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold text-crimson tracking-wider uppercase block">Section 2</span>
+                        <h3 id="s2-heading" class="font-heading text-lg font-bold text-white">Design Modification</h3>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-surface/80 border border-white/5 space-y-2">
+                    <p id="s2-desc" class="text-silverText text-sm leading-relaxed">
+                        ✦ When creating new artwork, you are free to adjust the hairstyle, clothing, accessories, gender, or minor details as you see fit, provided the original core design remains recognizable.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Section 3: Resell, Trade & Gift -->
+            <section id="section-3" class="tos-card bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
+                <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
+                    <div class="p-2.5 rounded-xl bg-crimson/15 text-crimson border border-crimson/30">
+                        <i data-lucide="repeat" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold text-crimson tracking-wider uppercase block">Section 3</span>
+                        <h3 id="s3-heading" class="font-heading text-lg font-bold text-white">Resell, Trade & Gift</h3>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                    <!-- Resell -->
+                    <div class="p-4 rounded-xl bg-surface/80 border border-white/5 space-y-2">
+                        <div class="font-semibold text-white flex items-center gap-1.5 text-sm">
+                            <i data-lucide="badge-dollar-sign" class="w-4 h-4 text-gothicGold"></i>
+                            <span id="s3-resell-title">Resell</span>
+                        </div>
+                        <p id="s3-resell-desc" class="text-mutedText leading-relaxed">
+                            Reselling is allowed only at or below the original purchase price. (Exceptions: You may add the actual cost of additional commissioned artwork).
+                        </p>
+                    </div>
+
+                    <!-- Trade & Gift -->
+                    <div class="p-4 rounded-xl bg-surface/80 border border-white/5 space-y-2">
+                        <div class="font-semibold text-white flex items-center gap-1.5 text-sm">
+                            <i data-lucide="gift" class="w-4 h-4 text-crimson"></i>
+                            <span id="s3-trade-title">Trade & Gift</span>
+                        </div>
+                        <p id="s3-trade-desc" class="text-mutedText leading-relaxed">
+                            You may freely trade the character for other adoptables or offer them as a gift to another person.
+                        </p>
+                    </div>
+
+                    <!-- Ownership Notice -->
+                    <div class="p-4 rounded-xl bg-surface/80 border border-white/5 space-y-2">
+                        <div class="font-semibold text-white flex items-center gap-1.5 text-sm">
+                            <i data-lucide="user-check" class="w-4 h-4 text-blue-400"></i>
+                            <span id="s3-notice-title">Owner Transfer Notice</span>
+                        </div>
+                        <p id="s3-notice-desc" class="text-mutedText leading-relaxed">
+                            Please notify ALMA of the new owner's name/handle whenever ownership changes. These Terms automatically transfer to future owners.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Credit -->
+            <section id="section-4" class="tos-card bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
+                <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
+                    <div class="p-2.5 rounded-xl bg-crimson/15 text-crimson border border-crimson/30">
+                        <i data-lucide="sparkle" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold text-crimson tracking-wider uppercase block">Section 4</span>
+                        <h3 id="s4-heading" class="font-heading text-lg font-bold text-white">Credit Requirements</h3>
+                    </div>
+                </div>
+
+                <div class="space-y-3 text-sm text-silverText">
+                    <div class="p-4 rounded-xl bg-surface/80 border border-white/5 flex items-start gap-3">
+                        <i data-lucide="check" class="w-5 h-5 text-crimson flex-shrink-0 mt-0.5"></i>
+                        <div class="space-y-1">
+                            <span id="s4-orig-title" class="font-semibold text-white block">Original Artwork Files</span>
+                            <p id="s4-orig-desc" class="text-xs text-mutedText leading-relaxed">
+                                Whenever posting or using ALMA's original artwork image files, you must clearly credit the designer: <strong class="text-crimson font-mono">Credit: ALMA</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-surface/80 border border-white/5 flex items-start gap-3">
+                        <i data-lucide="heart" class="w-5 h-5 text-gothicGold flex-shrink-0 mt-0.5"></i>
+                        <div class="space-y-1">
+                            <span id="s4-new-title" class="font-semibold text-white block">New / Commissioned Art</span>
+                            <p id="s4-new-desc" class="text-xs text-mutedText leading-relaxed">
+                                For newly drawn artwork created by yourself or commissioned from other artists, designer credit is optional (though always deeply appreciated!).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Prohibited Actions (Warning Section) -->
+            <section id="section-5" class="tos-card bg-gradient-to-b from-rose-950/20 via-card to-card border border-crimson/40 rounded-2xl p-6 transition-all duration-300">
+                <div class="flex items-center gap-3 mb-4 pb-3 border-b border-crimson/20">
+                    <div class="p-2.5 rounded-xl bg-crimson text-white shadow-lg shadow-crimson/30">
+                        <i data-lucide="slash" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold text-crimson tracking-wider uppercase block">Section 5</span>
+                        <h3 id="s5-heading" class="font-heading text-lg font-bold text-white">Prohibited Actions</h3>
+                    </div>
+                </div>
+
+                <div class="space-y-3 text-xs sm:text-sm">
+                    <div class="p-3.5 rounded-xl bg-crimson/10 border border-crimson/30 text-rose-200 flex items-center gap-3">
+                        <i data-lucide="x-circle" class="w-4 h-4 text-crimson flex-shrink-0"></i>
+                        <span id="s5-p1">❌ Do NOT claim yourself as the original designer or artist of the original artwork.</span>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-crimson/10 border border-crimson/30 text-rose-200 flex items-center gap-3">
+                        <i data-lucide="cpu" class="w-4 h-4 text-crimson flex-shrink-0"></i>
+                        <span id="s5-p2">❌ Strictly NO using original artwork or character designs for AI training or minting/creating NFTs.</span>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-crimson/10 border border-crimson/30 text-rose-200 flex items-center gap-3">
+                        <i data-lucide="shield-alert" class="w-4 h-4 text-crimson flex-shrink-0"></i>
+                        <span id="s5-p3">❌ Do NOT use the character for hate speech (racism, religion, politics) or illegal/defamatory purposes.</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Payment & Refund -->
+            <section id="section-6" class="tos-card bg-card border border-white/10 hover:border-white/20 rounded-2xl p-6 transition-all duration-300">
+                <div class="flex items-center justify-between mb-4 pb-3 border-b border-white/10 flex-wrap gap-2">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 rounded-xl bg-crimson/15 text-crimson border border-crimson/30">
+                            <i data-lucide="wallet" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-crimson tracking-wider uppercase block">Section 6</span>
+                            <h3 id="s6-heading" class="font-heading text-lg font-bold text-white">Payment & Refund</h3>
+                        </div>
+                    </div>
+
+                    <!-- Accepted Payment Badges -->
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] text-mutedText uppercase">Accepted:</span>
+                        <span class="px-2.5 py-1 rounded bg-surface border border-white/15 text-xs text-white font-medium flex items-center gap-1">
+                            <i data-lucide="globe" class="w-3.5 h-3.5 text-blue-400"></i> Wise
+                        </span>
+                        <span class="px-2.5 py-1 rounded bg-surface border border-white/15 text-xs text-white font-medium flex items-center gap-1">
+                            <i data-lucide="building-2" class="w-3.5 h-3.5 text-yellow-500"></i> Krungsri Bank
+                        </span>
+                    </div>
+                </div>
+
+                <div class="space-y-3 text-xs sm:text-sm text-silverText">
+                    <div class="p-4 rounded-xl bg-surface/80 border border-white/5 space-y-1">
+                        <span id="s6-time-title" class="font-semibold text-white block">✦ Payment Timeframe</span>
+                        <p id="s6-time-desc" class="text-xs text-mutedText leading-relaxed">
+                            Payment must be completed within 24–48 hours after purchase confirmation. (If you face any issues, please notify ALMA in advance).
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-surface/80 border border-white/5 space-y-1">
+                        <span id="s6-plan-title" class="font-semibold text-white block">✦ Payment Plans / Installments</span>
+                        <p id="s6-plan-desc" class="text-xs text-mutedText leading-relaxed">
+                            Installment plans must be completed within 1 month. Files will be delivered upon full payment. If a payment plan is canceled by the buyer, NO refunds will be issued.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-surface/80 border border-white/5 space-y-1">
+                        <span id="s6-refund-title" class="font-semibold text-white block">✦ Final Sales & Refunds</span>
+                        <p id="s6-refund-desc" class="text-xs text-mutedText leading-relaxed">
+                            Once digital files have been delivered, all sales are final. No refunds will be granted under any circumstances.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-obsidian py-8 px-4 text-center space-y-4">
+        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-mutedText">
+            <div class="flex items-center gap-2">
+                <i data-lucide="copyright" class="w-4 h-4 text-crimson"></i>
+                <span id="footer-copy">ALMA — All Rights Reserved. Adoptable Terms of Service.</span>
+            </div>
+
+            <div class="flex items-center gap-4 text-xs">
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hover:text-crimson transition-colors flex items-center gap-1">
+                    <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i> Back to Top
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-card border border-crimson text-white px-4 py-3 rounded-xl shadow-2xl shadow-crimson/20 flex items-center gap-3 transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
+        <i data-lucide="check-circle" class="w-5 h-5 text-crimson"></i>
+        <span id="toast-message" class="text-xs sm:text-sm font-medium">Copied to clipboard!</span>
+    </div>
+
+    <!-- JavaScript Interactions & Internationalization (EN / TH) -->
+    <script>
+        // Dictionary for English and Thai
+        const i18nData = {
+            en: {
+                navSubtitle: "Official Terms of Service",
+                copyBtn: "Copy TOS",
+                heroBadge: "Official Guidelines & Rules",
+                heroTitle: "Character Adoptable Terms of Service",
+                heroDesc: "Please read carefully before bidding, purchasing, or offering for ALMA's character designs. By acquiring a character, you automatically agree to these terms.",
+                
+                calcTitle: "Commercial Right Fee Calculator",
+                calcSubtitle: "Commercial rights require +30% of the Auto-Buy (AB) price (if not already included in the tier).",
+                calcInputLabel: "Base AB Price",
+                calcTotalLabel: "Total w/ Commercial",
+
+                s1Heading: "Usage Rights",
+                s1PersonalTitle: "✦ Personal Use",
+                s1PersonalDesc: "Allowed for profile pictures, fan art, web novels/stories, roleplay communities/games, or commissioning other artists as desired.",
+                s1CommHeader: "Commercial Use Tiers",
+                s1CommIncTitle: "Commercial Rights Included",
+                s1CommIncBadge: "Tier AB / Unlocked",
+                s1CommIncDesc: "You may use the design for merchandise (acrylic standees, keychains, prints, handmade goods), main characters in monetized games/novels, or as a VTuber model.",
+                s1CommNotIncTitle: "Commercial Rights NOT Included",
+                s1CommNotIncBadge: "Standard / SB",
+                s1CommNotIncDesc: "You may NOT produce merchandise for sale or use the design for direct profit. To unlock commercial rights, please contact ALMA to pay an additional fee (+30% of AB price).",
+
+                s2Heading: "Design Modification",
+                s2Desc: "✦ When creating new artwork, you are free to adjust the hairstyle, clothing, accessories, gender, or minor details as you see fit, provided the original core design remains recognizable.",
+
+                s3Heading: "Resell, Trade & Gift",
+                s3ResellTitle: "Resell",
+                s3ResellDesc: "Reselling is allowed only at or below the original purchase price. (Exceptions: You may add the actual cost of additional commissioned artwork).",
+                s3TradeTitle: "Trade & Gift",
+                s3TradeDesc: "You may freely trade the character for other adoptables or offer them as a gift to another person.",
+                s3NoticeTitle: "Owner Transfer Notice",
+                s3NoticeDesc: "Please notify ALMA of the new owner's name/handle whenever ownership changes. These Terms automatically transfer to future owners.",
+
+                s4Heading: "Credit Requirements",
+                s4OrigTitle: "Original Artwork Files",
+                s4OrigDesc: "Whenever posting or using ALMA's original artwork image files, you must clearly credit the designer: Credit: ALMA.",
+                s4NewTitle: "New / Commissioned Art",
+                s4NewDesc: "For newly drawn artwork created by yourself or commissioned from other artists, designer credit is optional (though always deeply appreciated!).",
+
+                s5Heading: "Prohibited Actions",
+                s5P1: "❌ Do NOT claim yourself as the original designer or artist of the original artwork.",
+                s5P2: "❌ Strictly NO using original artwork or character designs for AI training or minting/creating NFTs.",
+                s5P3: "❌ Do NOT use the character for hate speech (racism, religion, politics) or illegal/defamatory purposes.",
+
+                s6Heading: "Payment & Refund",
+                s6TimeTitle: "✦ Payment Timeframe",
+                s6TimeDesc: "Payment must be completed within 24–48 hours after purchase confirmation. (If you face any issues, please notify ALMA in advance).",
+                s6PlanTitle: "✦ Payment Plans / Installments",
+                s6PlanDesc: "Installment plans must be completed within 1 month. Files will be delivered upon full payment. If a payment plan is canceled by the buyer, NO refunds will be issued.",
+                s6RefundTitle: "✦ Final Sales & Refunds",
+                s6RefundDesc: "Once digital files have been delivered, all sales are final. No refunds will be granted under any circumstances.",
+
+                footerCopy: "ALMA — All Rights Reserved. Adoptable Terms of Service.",
+                copiedToast: "TOS copied to clipboard!"
+            },
+            th: {
+                navSubtitle: "ข้อตกลงการใช้งานตัวละครอย่างเป็นทางการ",
+                copyBtn: "คัดลอก TOS",
+                heroBadge: "กฎและข้อตกลงอย่างเป็นทางการ",
+                heroTitle: "ข้อตกลงการใช้งานตัวละคร (Terms of Service)",
+                heroDesc: "กรุณาอ่านรายละเอียดอย่างถี่ถ้วนก่อนทำการประมูล ซื้อ หรือยื่นข้อเสนอสำหรับตัวละครของ ALMA การผู้ครอบครองตัวละครถือว่ายอมรับข้อตกลงนี้โดยอัตโนมัติ",
+                
+                calcTitle: "เครื่องคำนวณสิทธิ์เชิงพาณิชย์",
+                calcSubtitle: "สิทธิ์เชิงพาณิชย์คิดเพิ่ม +30% ของราคา AB (หากแพ็กเกจนั้นยังไม่ได้รวมสิทธิ์เชิงพาณิชย์)",
+                calcInputLabel: "ราคา AB ตั้งต้น",
+                calcTotalLabel: "ราคารวมสิทธิ์เชิงพาณิชย์",
+
+                s1Heading: "สิทธิ์การใช้งาน (Usage Rights)",
+                s1PersonalTitle: "✦ การใช้งานส่วนตัว (Personal Use)",
+                s1PersonalDesc: "สามารถนำไปใช้ตั้งเป็นรูปโปรไฟล์ วาดแฟนอาร์ต ใช้ในนิยาย/คอมมู/เกม Roleplay หรือนำไปสั่งวาดคอมมิชชันต่อได้ตามต้องการ",
+                s1CommHeader: "ระดับสิทธิ์การใช้งานเชิงพาณิชย์",
+                s1CommIncTitle: "รวมสิทธิ์เชิงพาณิชย์แล้ว",
+                s1CommIncBadge: "ระดับ AB / ปลดล็อกแล้ว",
+                s1CommIncDesc: "สามารถนำไปใช้ทำสินค้า (สแตนดี้ พวงกุญแจ สินค้าทำมือ) เป็นตัวละครหลักในนิยาย/เกมที่สร้างรายได้ หรือใช้เป็นโมเดล VTuber ได้",
+                s1CommNotIncTitle: "ยังไม่รวมสิทธิ์เชิงพาณิชย์",
+                s1CommNotIncBadge: "ระดับทั่วไป / SB",
+                s1CommNotIncDesc: "ห้ามนำไปผลิตสินค้าเพื่อจำหน่ายหรือหารายได้โดยตรง หากต้องการปลดล็อกสิทธิ์เชิงพาณิชย์ สามารถติดต่อชำระเพิ่มได้ (+เพิ่ม 30% ของราคา AB)",
+
+                s2Heading: "การดัดแปลงดีไซน์ (Design Modification)",
+                s2Desc: "✦ ในกรณีที่วาดขึ้นใหม่ สามารถปรับเปลี่ยนทรงผม ชุด เครื่องประดับ เพศ หรือรายละเอียดเล็กน้อยของตัวละครได้ตามความเหมาะสม แต่ขอให้ยังคงเค้าโครงดีไซน์เดิมไว้",
+
+                s3Heading: "การส่งต่อ แลกเปลี่ยน และขายต่อ",
+                s3ResellTitle: "การขายต่อ (Resell)",
+                s3ResellDesc: "สามารถขายต่อได้ในราคาไม่เกินราคาที่ซื้อไป (ยกเว้นกรณีที่มีงานวาดคอมมิชชันเพิ่มเติม สามารถบวกราคาเพิ่มตามมูลค่างานจริงได้)",
+                s3TradeTitle: "การแลกเปลี่ยน / ของขวัญ",
+                s3TradeDesc: "สามารถนำไปแลกเปลี่ยนกับตัวละครอื่น หรือยกให้ผู้อื่นเป็นของขวัญได้ตามปกติ",
+                s3NoticeTitle: "การแจ้งเปลี่ยนเจ้าของ",
+                s3NoticeDesc: "กรุณาแจ้งชื่อ/แอคเคาท์ของเจ้าของคนใหม่ให้ ALMA ทราบทุกครั้ง เพื่อป้องกันการแอบอ้างสิทธิ์ ข้อตกลงนี้จะถูกส่งต่อไปยังเจ้าของคนถัดไปโดยอัตโนมัติ",
+
+                s4Heading: "การให้เครดิต (Credit)",
+                s4OrigTitle: "ไฟล์ภาพต้นฉบับ",
+                s4OrigDesc: "เมื่อนำไฟล์ภาพต้นฉบับของผู้วาดไปโพสต์ใช้งาน กรุณาให้เครดิตผู้วาด/ผู้ออกแบบเสมอ (เครดิต: ALMA)",
+                s4NewTitle: "ภาพวาดใหม่ / จ้างคอมมิชชัน",
+                s4NewDesc: "หากเป็นภาพที่วาดขึ้นใหม่เองหรือจ้างนักวาดท่านอื่นวาด จะใส่เครดิตผู้ออกแบบหรือไม่ก็ได้ตามสะดวก (แต่หากใส่ให้จะขอบคุณมากครับ)",
+
+                s5Heading: "ข้อห้ามเด็ดขาด (Prohibited Actions)",
+                s5P1: "❌ ห้ามแอบอ้างว่าตนเองเป็นผู้ออกแบบหรือผู้วาดภาพต้นฉบับ",
+                s5P2: "❌ ห้ามนำไฟล์ภาพต้นฉบับหรือดีไซน์ไปใช้ในการเทรน AI (AI Training) หรือนำไปสร้างเป็นผลงาน NFT โดยเด็ดขาด",
+                s5P3: "❌ ห้ามนำไปใช้ในเชิงเหยียดเชื้อชาติ ศาสนา การเมือง หรือสร้างความเสื่อมเสียทางกฎหมาย",
+
+                s6Heading: "การชำระเงินและการคืนเงิน",
+                s6TimeTitle: "✦ ระยะเวลาการชำระเงิน",
+                s6TimeDesc: "กรุณาชำระเงินภายใน 24–48 ชั่วโมงหลังจากตกลงซื้อขาย (หากติดขัดสามารถแจ้งล่วงหน้าได้)",
+                s6PlanTitle: "✦ การผ่อนชำระ (Installment Plan)",
+                s6PlanDesc: "ผ่อนชำระได้ภายใน 1 เดือน (ส่งมอบไฟล์ภาพเมื่อชำระครบถ้วน) หากผ่อนแล้วยกเลิกจะไม่มีการคืนเงินทุกกรณี",
+                s6RefundTitle: "✦ การคืนเงิน",
+                s6RefundDesc: "เมื่อส่งมอบไฟล์งานแล้ว ขอสงวนสิทธิ์ในการไม่คืนเงินทุกกรณี",
+
+                footerCopy: "ALMA — สงวนลิขสิทธิ์ทั้งหมด ข้อตกลงการใช้งานตัวละคร (Terms of Service)",
+                copiedToast: "คัดลอกข้อตกลง TOS เรียบร้อยแล้ว!"
+            }
+        };
+
+        let currentLang = 'en';
+
+        // Switch Language function
+        function switchLanguage(lang) {
+            currentLang = lang;
+            const data = i18nData[lang];
+
+            // Update Toggle Button styles
+            const enBtn = document.getElementById('lang-en-btn');
+            const thBtn = document.getElementById('lang-th-btn');
+            if (lang === 'en') {
+                enBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 bg-crimson text-white shadow";
+                thBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 text-mutedText hover:text-white";
+            } else {
+                thBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 bg-crimson text-white shadow";
+                enBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 text-mutedText hover:text-white";
+            }
+
+            // Update text elements
+            document.getElementById('nav-subtitle').innerText = data.navSubtitle;
+            document.getElementById('copy-btn-text').innerText = data.copyBtn;
+            document.getElementById('hero-badge').innerText = data.heroBadge;
+            document.getElementById('hero-title').innerText = data.heroTitle;
+            document.getElementById('hero-desc').innerText = data.heroDesc;
+
+            document.getElementById('calc-title').innerText = data.calcTitle;
+            document.getElementById('calc-subtitle').innerText = data.calcSubtitle;
+            document.getElementById('calc-input-label').innerText = data.calcInputLabel;
+            document.getElementById('calc-total-label').innerText = data.calcTotalLabel;
+
+            document.getElementById('s1-heading').innerText = data.s1Heading;
+            document.getElementById('s1-personal-title').innerText = data.s1PersonalTitle;
+            document.getElementById('s1-personal-desc').innerText = data.s1PersonalDesc;
+            document.getElementById('s1-comm-header').innerText = data.s1CommHeader;
+            document.getElementById('s1-comm-inc-title').innerText = data.s1CommIncTitle;
+            document.getElementById('s1-comm-inc-badge').innerText = data.s1CommIncBadge;
+            document.getElementById('s1-comm-inc-desc').innerText = data.s1CommIncDesc;
+            document.getElementById('s1-comm-notinc-title').innerText = data.s1CommNotIncTitle;
+            document.getElementById('s1-comm-notinc-badge').innerText = data.s1CommNotIncBadge;
+            document.getElementById('s1-comm-notinc-desc').innerText = data.s1CommNotIncDesc;
+
+            document.getElementById('s2-heading').innerText = data.s2Heading;
+            document.getElementById('s2-desc').innerText = data.s2Desc;
+
+            document.getElementById('s3-heading').innerText = data.s3Heading;
+            document.getElementById('s3-resell-title').innerText = data.s3ResellTitle;
+            document.getElementById('s3-resell-desc').innerText = data.s3ResellDesc;
+            document.getElementById('s3-trade-title').innerText = data.s3TradeTitle;
+            document.getElementById('s3-trade-desc').innerText = data.s3TradeDesc;
+            document.getElementById('s3-notice-title').innerText = data.s3NoticeTitle;
+            document.getElementById('s3-notice-desc').innerText = data.s3NoticeDesc;
+
+            document.getElementById('s4-heading').innerText = data.s4Heading;
+            document.getElementById('s4-orig-title').innerText = data.s4OrigTitle;
+            document.getElementById('s4-orig-desc').innerText = data.s4OrigDesc;
+            document.getElementById('s4-new-title').innerText = data.s4NewTitle;
+            document.getElementById('s4-new-desc').innerText = data.s4NewDesc;
+
+            document.getElementById('s5-heading').innerText = data.s5Heading;
+            document.getElementById('s5-p1').innerText = data.s5P1;
+            document.getElementById('s5-p2').innerText = data.s5P2;
+            document.getElementById('s5-p3').innerText = data.s5P3;
+
+            document.getElementById('s6-heading').innerText = data.s6Heading;
+            document.getElementById('s6-time-title').innerText = data.s6TimeTitle;
+            document.getElementById('s6-time-desc').innerText = data.s6TimeDesc;
+            document.getElementById('s6-plan-title').innerText = data.s6PlanTitle;
+            document.getElementById('s6-plan-desc').innerText = data.s6PlanDesc;
+            document.getElementById('s6-refund-title').innerText = data.s6RefundTitle;
+            document.getElementById('s6-refund-desc').innerText = data.s6RefundDesc;
+
+            document.getElementById('footer-copy').innerText = data.footerCopy;
+        }
+
+        // Commercial Right Calculator Logic
+        function calculateCommercialFee() {
+            const abInput = document.getElementById('ab-price-input');
+            const feeSpan = document.getElementById('calculated-fee');
+            const totalSpan = document.getElementById('calculated-total');
+
+            let abPrice = parseFloat(abInput.value);
+            if (isNaN(abPrice) || abPrice < 0) abPrice = 0;
+
+            const fee = abPrice * 0.30;
+            const total = abPrice + fee;
+
+            feeSpan.innerText = `+$${fee.toFixed(2)}`;
+            totalSpan.innerText = `$${total.toFixed(2)}`;
+        }
+
+        // Copy TOS to Clipboard
+        function copyCurrentTOS() {
+            const data = i18nData[currentLang];
+            let textToCopy = `📋 ${data.heroTitle} — ALMA\n\n`;
+            textToCopy += `1. ${data.s1Heading}\n`;
+            textToCopy += `• Personal: ${data.s1PersonalDesc}\n`;
+            textToCopy += `• Commercial (+30% AB fee if unincluded): ${data.s1CommIncDesc}\n\n`;
+            textToCopy += `2. ${data.s2Heading}\n${data.s2Desc}\n\n`;
+            textToCopy += `3. ${data.s3Heading}\n`;
+            textToCopy += `• Resell: ${data.s3ResellDesc}\n`;
+            textToCopy += `• Trade/Gift: ${data.s3TradeDesc}\n\n`;
+            textToCopy += `4. ${data.s4Heading}\n• ${data.s4OrigDesc}\n\n`;
+            textToCopy += `5. ${data.s5Heading}\n${data.s5P1}\n${data.s5P2}\n${data.s5P3}\n\n`;
+            textToCopy += `6. ${data.s6Heading}\n• ${data.s6TimeDesc}\n• ${data.s6PlanDesc}\n• ${data.s6RefundDesc}`;
+
+            // ExecCommand Copy Fallback
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = textToCopy;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            showToast(data.copiedToast);
+        }
+
+        // Toast Notification Helper
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.innerText = msg;
+            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // Real-time TOS Keyword Search Filter
+        document.getElementById('tos-search').addEventListener('input', function(e) {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.tos-card');
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(term)) {
+                    card.style.display = 'block';
+                    card.classList.add('crimson-glow-box');
+                } else {
+                    card.style.display = 'none';
+                    card.classList.remove('crimson-glow-box');
+                }
+            });
+        });
+
+        // Initialize Lucide Icons & Default Language on Load
+        window.onload = function() {
+            lucide.createIcons();
+            switchLanguage('en');
+            calculateCommercialFee();
+        };
+    </script>
+</body>
+</html>
