@@ -180,46 +180,6 @@
             <a href="#section-6" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-card border border-white/10 hover:border-crimson/40 text-silverText transition-all">6. Payment & Refund</a>
         </nav>
 
-        <!-- Interactive Commercial Calculator Card -->
-        <section class="bg-gradient-to-br from-card via-surface to-card border border-crimson/30 rounded-2xl p-5 sm:p-6 crimson-glow-box relative overflow-hidden">
-            <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-crimson/10 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10">
-                <div class="space-y-1">
-                    <div class="flex items-center gap-2 text-crimson font-heading font-semibold text-sm">
-                        <i data-lucide="calculator" class="w-4 h-4"></i>
-                        <span id="calc-title">Commercial Right Fee Calculator</span>
-                    </div>
-                    <p id="calc-subtitle" class="text-xs text-mutedText">
-                        Commercial rights require +30% of the Auto-Buy (AB) price (if not already included in the tier).
-                    </p>
-                </div>
-
-                <div class="flex flex-wrap items-center gap-4 w-full md:w-auto bg-obsidian/60 p-3 rounded-xl border border-white/10">
-                    <div class="space-y-1 flex-1 min-w-[130px]">
-                        <label id="calc-input-label" class="text-[11px] text-mutedText uppercase font-semibold">Base AB Price</label>
-                        <div class="relative">
-                            <span class="absolute left-2.5 top-1/2 -translate-y-1/2 text-mutedText text-xs font-bold">$</span>
-                            <input type="number" id="ab-price-input" value="60" min="0" oninput="calculateCommercialFee()"
-                                   class="w-full bg-surface border border-white/15 rounded-lg pl-6 pr-3 py-1.5 text-sm text-white font-mono focus:outline-none focus:border-crimson">
-                        </div>
-                    </div>
-
-                    <div class="text-center font-mono">
-                        <span class="text-xs text-mutedText block">+30% Fee</span>
-                        <span id="calculated-fee" class="text-sm font-bold text-crimson">+$18.00</span>
-                    </div>
-
-                    <div class="h-8 w-px bg-white/10 hidden sm:block"></div>
-
-                    <div class="text-right font-mono flex-1 min-w-[130px]">
-                        <span id="calc-total-label" class="text-[11px] text-mutedText block uppercase">Total w/ Commercial</span>
-                        <span id="calculated-total" class="text-base font-bold text-gothicGold">$78.00</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- TOS Sections Cards Grid -->
         <div class="space-y-6">
 
@@ -248,34 +208,99 @@
                     </div>
 
                     <!-- Commercial Use Comparison Boxes -->
-                    <div class="space-y-2">
+                    <div class="space-y-3">
                         <span id="s1-comm-header" class="font-semibold text-white text-xs uppercase tracking-wider block">Commercial Use Tiers</span>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <!-- Commercial Included -->
                             <div class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/30 space-y-2">
-                                <div class="flex items-center justify-between">
+                                <div class="flex items-center justify-between gap-2 flex-wrap">
                                     <span id="s1-comm-inc-title" class="font-semibold text-emerald-400 text-xs flex items-center gap-1.5">
                                         <i data-lucide="check-circle-2" class="w-4 h-4"></i> Commercial Rights Included
                                     </span>
-                                    <span id="s1-comm-inc-badge" class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/30">Tier AB / Unlocked</span>
+                                    <span id="s1-comm-inc-badge" class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/30">Milestone Reached / AB</span>
                                 </div>
                                 <p id="s1-comm-inc-desc" class="text-xs text-emerald-200/80 leading-relaxed">
-                                    You may use the design for merchandise (acrylic standees, keychains, prints, handmade goods), main characters in monetized games/novels, or as a VTuber model.
+                                    Unlocked when winning the auction at or above the post's commercial milestone price, purchasing at Auto-Buy (AB), or when the post explicitly states commercial rights are included from SB. Allows merchandise (acrylic standees, keychains, prints, handmade goods), main characters in monetized games/novels, or VTuber models.
                                 </p>
                             </div>
 
                             <!-- Commercial Not Included -->
                             <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-500/30 space-y-2">
-                                <div class="flex items-center justify-between">
+                                <div class="flex items-center justify-between gap-2 flex-wrap">
                                     <span id="s1-comm-notinc-title" class="font-semibold text-amber-400 text-xs flex items-center gap-1.5">
                                         <i data-lucide="alert-circle" class="w-4 h-4"></i> Commercial Rights NOT Included
                                     </span>
-                                    <span id="s1-comm-notinc-badge" class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">Standard / SB</span>
+                                    <span id="s1-comm-notinc-badge" class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">Below Milestone</span>
                                 </div>
                                 <p id="s1-comm-notinc-desc" class="text-xs text-amber-200/80 leading-relaxed">
-                                    You may NOT produce merchandise for sale or use the design for direct profit. To unlock commercial rights, please contact ALMA to pay an additional fee (+30% of AB price).
+                                    Applies when winning the bid below the post's commercial unlock threshold (not all SB bids exclude commercial rights—check each post's specific terms). You may NOT produce merchandise or use for direct profit, though you can contact ALMA anytime to unlock commercial rights for +30% of the AB price.
                                 </p>
+                            </div>
+                        </div>
+
+                        <!-- Bid Milestone Example Callout -->
+                        <div class="p-3.5 rounded-xl bg-obsidian/60 border border-white/10 flex items-start gap-3">
+                            <i data-lucide="info" class="w-4 h-4 text-gothicGold flex-shrink-0 mt-0.5"></i>
+                            <div class="space-y-1 text-xs leading-relaxed">
+                                <span id="s1-example-title" class="font-semibold text-gothicGold block">Example of Bid Milestone Unlock:</span>
+                                <p id="s1-example-desc" class="text-mutedText">
+                                    Suppose a post lists: SB 1,000 / Commercial Unlock at 1,500 / AB 2,000 — Winning at 1,200 grants Personal Use (can pay +30% AB later to unlock). Winning at 1,500+ or buying at AB 2,000 grants Commercial Rights immediately.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Commercial Calculator Card (Placed inside Section 1) -->
+                        <div class="mt-4 bg-gradient-to-br from-surface via-obsidian/90 to-surface border border-crimson/30 rounded-xl p-4 sm:p-5 crimson-glow-box relative overflow-hidden">
+                            <div class="absolute -right-10 -bottom-10 w-36 h-36 bg-crimson/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                            <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 relative z-10">
+                                <div class="space-y-1.5 flex-1">
+                                    <div class="flex flex-wrap items-center justify-between gap-2">
+                                        <div class="flex items-center gap-2 text-crimson font-heading font-semibold text-sm">
+                                            <i data-lucide="calculator" class="w-4 h-4"></i>
+                                            <span id="calc-title">Commercial Right Fee Calculator</span>
+                                        </div>
+
+                                        <!-- Currency Switcher -->
+                                        <div class="inline-flex items-center bg-obsidian border border-white/15 rounded-lg p-0.5 text-[11px]">
+                                            <button type="button" id="curr-thb-btn" onclick="switchCurrency('THB', true)"
+                                                    class="px-2.5 py-1 rounded-md font-semibold transition-all duration-200 text-mutedText hover:text-white">
+                                                THB ฿
+                                            </button>
+                                            <button type="button" id="curr-usd-btn" onclick="switchCurrency('USD', true)"
+                                                    class="px-2.5 py-1 rounded-md font-semibold transition-all duration-200 bg-crimson text-white shadow">
+                                                USD $
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p id="calc-subtitle" class="text-xs text-mutedText">
+                                        Commercial rights require +30% of the Auto-Buy (AB) price (if not already included in the tier).
+                                    </p>
+                                </div>
+
+                                <div class="flex flex-wrap items-center gap-3 sm:gap-4 w-full lg:w-auto bg-obsidian/70 p-3 rounded-xl border border-white/10">
+                                    <div class="space-y-1 flex-1 min-w-[125px]">
+                                        <label id="calc-input-label" class="text-[11px] text-mutedText uppercase font-semibold">Base AB Price</label>
+                                        <div class="relative">
+                                            <span id="calc-currency-symbol" class="absolute left-2.5 top-1/2 -translate-y-1/2 text-mutedText text-xs font-bold">$</span>
+                                            <input type="number" id="ab-price-input" value="60" min="0" oninput="calculateCommercialFee()"
+                                                   class="w-full bg-surface border border-white/15 rounded-lg pl-6 pr-3 py-1.5 text-sm text-white font-mono focus:outline-none focus:border-crimson">
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center font-mono">
+                                        <span class="text-[11px] text-mutedText block">+30% Fee</span>
+                                        <span id="calculated-fee" class="text-sm font-bold text-crimson">+$18.00</span>
+                                    </div>
+
+                                    <div class="h-8 w-px bg-white/10 hidden sm:block"></div>
+
+                                    <div class="text-right font-mono flex-1 min-w-[125px]">
+                                        <span id="calc-total-label" class="text-[11px] text-mutedText block uppercase">Total w/ Commercial</span>
+                                        <span id="calculated-total" class="text-base font-bold text-gothicGold">$78.00</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -535,11 +560,13 @@
                 s1PersonalDesc: "Allowed for profile pictures, fan art, web novels/stories, roleplay communities/games, or commissioning other artists as desired.",
                 s1CommHeader: "Commercial Use Tiers",
                 s1CommIncTitle: "Commercial Rights Included",
-                s1CommIncBadge: "Tier AB / Unlocked",
-                s1CommIncDesc: "You may use the design for merchandise (acrylic standees, keychains, prints, handmade goods), main characters in monetized games/novels, or as a VTuber model.",
+                s1CommIncBadge: "Milestone Reached / AB",
+                s1CommIncDesc: "Unlocked when winning the auction at or above the post's commercial milestone price, purchasing at Auto-Buy (AB), or when the post explicitly states commercial rights are included from SB. Allows merchandise (acrylic standees, keychains, prints, handmade goods), main characters in monetized games/novels, or VTuber models.",
                 s1CommNotIncTitle: "Commercial Rights NOT Included",
-                s1CommNotIncBadge: "Standard / SB",
-                s1CommNotIncDesc: "You may NOT produce merchandise for sale or use the design for direct profit. To unlock commercial rights, please contact ALMA to pay an additional fee (+30% of AB price).",
+                s1CommNotIncBadge: "Below Milestone",
+                s1CommNotIncDesc: "Applies when winning the bid below the post's commercial unlock threshold (not all SB bids exclude commercial rights—check each post's specific terms). You may NOT produce merchandise or use for direct profit, though you can contact ALMA anytime to unlock commercial rights for +30% of the AB price.",
+                s1ExampleTitle: "Example of Bid Milestone Unlock:",
+                s1ExampleDesc: "Suppose a post lists: SB 1,000 / Commercial Unlock at 1,500 / AB 2,000 — Winning at 1,200 grants Personal Use (can pay +30% AB later to unlock). Winning at 1,500+ or buying at AB 2,000 grants Commercial Rights immediately.",
 
                 s2Heading: "Design Modification",
                 s2Desc: "✦ When creating new artwork, you are free to adjust the hairstyle, clothing, accessories, gender, or minor details as you see fit, provided the original core design remains recognizable.",
@@ -578,7 +605,7 @@
                 navSubtitle: "ข้อตกลงการใช้งานตัวละครอย่างเป็นทางการ",
                 heroBadge: "กฎและข้อตกลงอย่างเป็นทางการ",
                 heroTitle: "ข้อตกลงการใช้งานตัวละคร (Terms of Service)",
-                heroDesc: "กรุณาอ่านรายละเอียดอย่างถี่ถ้วนก่อนทำการประมูล ซื้อ หรือยื่นข้อเสนอสำหรับตัวละครของ ALMA การผู้ครอบครองตัวละครถือว่ายอมรับข้อตกลงนี้โดยอัตโนมัติ",
+                heroDesc: "กรุณาอ่านรายละเอียดอย่างถี่ถ้วนก่อนทำการประมูล ซื้อ หรือยื่นข้อเสนอสำหรับตัวละครของ ALMA การครอบครองตัวละครถือว่ายอมรับข้อตกลงนี้โดยอัตโนมัติ",
                 
                 calcTitle: "เครื่องคำนวณสิทธิ์เชิงพาณิชย์",
                 calcSubtitle: "สิทธิ์เชิงพาณิชย์คิดเพิ่ม +30% ของราคา AB (หากแพ็กเกจนั้นยังไม่ได้รวมสิทธิ์เชิงพาณิชย์)",
@@ -590,11 +617,13 @@
                 s1PersonalDesc: "สามารถนำไปใช้ตั้งเป็นรูปโปรไฟล์ วาดแฟนอาร์ต ใช้ในนิยาย/คอมมู/เกม Roleplay หรือนำไปสั่งวาดคอมมิชชันต่อได้ตามต้องการ",
                 s1CommHeader: "ระดับสิทธิ์การใช้งานเชิงพาณิชย์",
                 s1CommIncTitle: "รวมสิทธิ์เชิงพาณิชย์แล้ว",
-                s1CommIncBadge: "ระดับ AB / ปลดล็อกแล้ว",
-                s1CommIncDesc: "สามารถนำไปใช้ทำสินค้า (สแตนดี้ พวงกุญแจ สินค้าทำมือ) เป็นตัวละครหลักในนิยาย/เกมที่สร้างรายได้ หรือใช้เป็นโมเดล VTuber ได้",
+                s1CommIncBadge: "ถึงเกณฑ์ปลดล็อก / AB",
+                s1CommIncDesc: "ได้รับสิทธิ์เมื่อชนะประมูลถึงราคาเกณฑ์ปลดล็อกที่ระบุในโพสต์, ซื้อในราคา AB, หรือเป็นตัวละครที่ระบุว่าแถมสิทธิ์เชิงพาณิชย์ตั้งแต่ราคาเปิด (SB) สามารถนำไปผลิตสินค้า (สแตนดี้ พวงกุญแจ สินค้าทำมือ) ใช้ในนิยาย/เกมที่สร้างรายได้ หรือเป็นโมเดล VTuber ได้",
                 s1CommNotIncTitle: "ยังไม่รวมสิทธิ์เชิงพาณิชย์",
-                s1CommNotIncBadge: "ระดับทั่วไป / SB",
-                s1CommNotIncDesc: "ห้ามนำไปผลิตสินค้าเพื่อจำหน่ายหรือหารายได้โดยตรง หากต้องการปลดล็อกสิทธิ์เชิงพาณิชย์ สามารถติดต่อชำระเพิ่มได้ (+เพิ่ม 30% ของราคา AB)",
+                s1CommNotIncBadge: "ต่ำกว่าเกณฑ์ปลดล็อก",
+                s1CommNotIncDesc: "สำหรับผู้ที่ชนะการประมูลในราคาที่ยังไม่ถึงเกณฑ์ปลดล็อกสิทธิ์เชิงพาณิชย์ที่ระบุในโพสต์ (ราคา SB ไม่ได้หมายความว่าไม่รวมสิทธิ์เชิงพาณิชย์เสมอไป กรุณาดูเงื่อนไขในแต่ละโพสต์) ห้ามผลิตสินค้าจำหน่ายหรือหารายได้โดยตรง แต่สามารถติดต่อจ่ายเพิ่ม +30% ของราคา AB เพื่อปลดล็อกภายหลังได้",
+                s1ExampleTitle: "ตัวอย่างเงื่อนไขการปลดล็อกสิทธิ์:",
+                s1ExampleDesc: "สมมติโพสต์ระบุ: เปิดประมูล (SB) 1,000 / ปลดล็อกเชิงพาณิชย์ที่ 1,500 / AB 2,000 — หากจบประมูลที่ 1,200 จะได้รับสิทธิ์ใช้งานส่วนตัว (สามารถจ่ายเพิ่ม +30% ของราคา AB ทีหลังได้) แต่หากบิดจบที่ 1,500 ขึ้นไป หรือกด AB 2,000 จะได้รับสิทธิ์เชิงพาณิชย์ทันที",
 
                 s2Heading: "การดัดแปลงดีไซน์ (Design Modification)",
                 s2Desc: "✦ ในกรณีที่วาดขึ้นใหม่ สามารถปรับเปลี่ยนทรงผม ชุด เครื่องประดับ เพศ หรือรายละเอียดเล็กน้อยของตัวละครได้ตามความเหมาะสม แต่ขอให้ยังคงเค้าโครงดีไซน์เดิมไว้",
@@ -632,77 +661,120 @@
         };
 
         let currentLang = 'en';
+        let currentCurrency = 'USD';
+
+        // Switch Currency function (THB / USD)
+        function switchCurrency(currency, resetDefault = false) {
+            currentCurrency = currency;
+            const thbBtn = document.getElementById('curr-thb-btn');
+            const usdBtn = document.getElementById('curr-usd-btn');
+            const symbolSpan = document.getElementById('calc-currency-symbol');
+            const abInput = document.getElementById('ab-price-input');
+
+            if (currency === 'THB') {
+                thbBtn.className = "px-2.5 py-1 rounded-md font-semibold transition-all duration-200 bg-crimson text-white shadow";
+                usdBtn.className = "px-2.5 py-1 rounded-md font-semibold transition-all duration-200 text-mutedText hover:text-white";
+                symbolSpan.innerText = "฿";
+                if (resetDefault || abInput.value === "60" || abInput.value === "") {
+                    abInput.value = "2000";
+                }
+            } else {
+                usdBtn.className = "px-2.5 py-1 rounded-md font-semibold transition-all duration-200 bg-crimson text-white shadow";
+                thbBtn.className = "px-2.5 py-1 rounded-md font-semibold transition-all duration-200 text-mutedText hover:text-white";
+                symbolSpan.innerText = "$";
+                if (resetDefault || abInput.value === "2000" || abInput.value === "") {
+                    abInput.value = "60";
+                }
+            }
+
+            calculateCommercialFee();
+        }
 
         // Switch Language function
         function switchLanguage(lang) {
             currentLang = lang;
             const data = i18nData[lang];
 
+            // Safely set text content only when target element exists
+            const setText = (id, value) => {
+                const el = document.getElementById(id);
+                if (el && typeof value === 'string') {
+                    el.innerText = value;
+                }
+            };
+
             // Update Toggle Button styles
             const enBtn = document.getElementById('lang-en-btn');
             const thBtn = document.getElementById('lang-th-btn');
-            if (lang === 'en') {
-                enBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 bg-crimson text-white shadow";
-                thBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 text-mutedText hover:text-white";
-            } else {
-                thBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 bg-crimson text-white shadow";
-                enBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 text-mutedText hover:text-white";
+            if (enBtn && thBtn) {
+                if (lang === 'en') {
+                    enBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 bg-crimson text-white shadow";
+                    thBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 text-mutedText hover:text-white";
+                } else {
+                    thBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 bg-crimson text-white shadow";
+                    enBtn.className = "px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 text-mutedText hover:text-white";
+                }
             }
 
-            // Update text elements
-            document.getElementById('nav-subtitle').innerText = data.navSubtitle;
-            document.getElementById('hero-badge').innerText = data.heroBadge;
-            document.getElementById('hero-title').innerText = data.heroTitle;
-            document.getElementById('hero-desc').innerText = data.heroDesc;
+            // Update text elements safely
+            setText('nav-subtitle', data.navSubtitle);
+            setText('hero-badge', data.heroBadge);
+            setText('hero-title', data.heroTitle);
+            setText('hero-desc', data.heroDesc);
 
-            document.getElementById('calc-title').innerText = data.calcTitle;
-            document.getElementById('calc-subtitle').innerText = data.calcSubtitle;
-            document.getElementById('calc-input-label').innerText = data.calcInputLabel;
-            document.getElementById('calc-total-label').innerText = data.calcTotalLabel;
+            setText('calc-title', data.calcTitle);
+            setText('calc-subtitle', data.calcSubtitle);
+            setText('calc-input-label', data.calcInputLabel);
+            setText('calc-total-label', data.calcTotalLabel);
 
-            document.getElementById('s1-heading').innerText = data.s1Heading;
-            document.getElementById('s1-personal-title').innerText = data.s1PersonalTitle;
-            document.getElementById('s1-personal-desc').innerText = data.s1PersonalDesc;
-            document.getElementById('s1-comm-header').innerText = data.s1CommHeader;
-            document.getElementById('s1-comm-inc-title').innerText = data.s1CommIncTitle;
-            document.getElementById('s1-comm-inc-badge').innerText = data.s1CommIncBadge;
-            document.getElementById('s1-comm-inc-desc').innerText = data.s1CommIncDesc;
-            document.getElementById('s1-comm-notinc-title').innerText = data.s1CommNotIncTitle;
-            document.getElementById('s1-comm-notinc-badge').innerText = data.s1CommNotIncBadge;
-            document.getElementById('s1-comm-notinc-desc').innerText = data.s1CommNotIncDesc;
+            setText('s1-heading', data.s1Heading);
+            setText('s1-personal-title', data.s1PersonalTitle);
+            setText('s1-personal-desc', data.s1PersonalDesc);
+            setText('s1-comm-header', data.s1CommHeader);
+            setText('s1-comm-inc-title', data.s1CommIncTitle);
+            setText('s1-comm-inc-badge', data.s1CommIncBadge);
+            setText('s1-comm-inc-desc', data.s1CommIncDesc);
+            setText('s1-comm-notinc-title', data.s1CommNotIncTitle);
+            setText('s1-comm-notinc-badge', data.s1CommNotIncBadge);
+            setText('s1-comm-notinc-desc', data.s1CommNotIncDesc);
+            setText('s1-example-title', data.s1ExampleTitle);
+            setText('s1-example-desc', data.s1ExampleDesc);
 
-            document.getElementById('s2-heading').innerText = data.s2Heading;
-            document.getElementById('s2-desc').innerText = data.s2Desc;
+            setText('s2-heading', data.s2Heading);
+            setText('s2-desc', data.s2Desc);
 
-            document.getElementById('s3-heading').innerText = data.s3Heading;
-            document.getElementById('s3-resell-title').innerText = data.s3ResellTitle;
-            document.getElementById('s3-resell-desc').innerText = data.s3ResellDesc;
-            document.getElementById('s3-trade-title').innerText = data.s3TradeTitle;
-            document.getElementById('s3-trade-desc').innerText = data.s3TradeDesc;
-            document.getElementById('s3-notice-title').innerText = data.s3NoticeTitle;
-            document.getElementById('s3-notice-desc').innerText = data.s3NoticeDesc;
+            setText('s3-heading', data.s3Heading);
+            setText('s3-resell-title', data.s3ResellTitle);
+            setText('s3-resell-desc', data.s3ResellDesc);
+            setText('s3-trade-title', data.s3TradeTitle);
+            setText('s3-trade-desc', data.s3TradeDesc);
+            setText('s3-notice-title', data.s3NoticeTitle);
+            setText('s3-notice-desc', data.s3NoticeDesc);
 
-            document.getElementById('s4-heading').innerText = data.s4Heading;
-            document.getElementById('s4-orig-title').innerText = data.s4OrigTitle;
-            document.getElementById('s4-orig-desc').innerText = data.s4OrigDesc;
-            document.getElementById('s4-new-title').innerText = data.s4NewTitle;
-            document.getElementById('s4-new-desc').innerText = data.s4NewDesc;
+            setText('s4-heading', data.s4Heading);
+            setText('s4-orig-title', data.s4OrigTitle);
+            setText('s4-orig-desc', data.s4OrigDesc);
+            setText('s4-new-title', data.s4NewTitle);
+            setText('s4-new-desc', data.s4NewDesc);
 
-            document.getElementById('s5-heading').innerText = data.s5Heading;
-            document.getElementById('s5-p1').innerText = data.s5P1;
-            document.getElementById('s5-p2').innerText = data.s5P2;
-            document.getElementById('s5-p3').innerText = data.s5P3;
+            setText('s5-heading', data.s5Heading);
+            setText('s5-p1', data.s5P1);
+            setText('s5-p2', data.s5P2);
+            setText('s5-p3', data.s5P3);
 
-            document.getElementById('s6-heading').innerText = data.s6Heading;
-            document.getElementById('s6-time-title').innerText = data.s6TimeTitle;
-            document.getElementById('s6-time-desc').innerText = data.s6TimeDesc;
-            document.getElementById('s6-plan-title').innerText = data.s6PlanTitle;
-            document.getElementById('s6-plan-desc').innerText = data.s6PlanDesc;
-            document.getElementById('s6-refund-title').innerText = data.s6RefundTitle;
-            document.getElementById('s6-refund-desc').innerText = data.s6RefundDesc;
+            setText('s6-heading', data.s6Heading);
+            setText('s6-time-title', data.s6TimeTitle);
+            setText('s6-time-desc', data.s6TimeDesc);
+            setText('s6-plan-title', data.s6PlanTitle);
+            setText('s6-plan-desc', data.s6PlanDesc);
+            setText('s6-refund-title', data.s6RefundTitle);
+            setText('s6-refund-desc', data.s6RefundDesc);
 
-            document.getElementById('follow-label').innerText = data.followLabel;
-            document.getElementById('footer-copy').innerText = data.footerCopy;
+            setText('follow-label', data.followLabel);
+            setText('footer-copy', data.footerCopy);
+
+            // Sync default currency with selected language
+            switchCurrency(lang === 'th' ? 'THB' : 'USD', true);
         }
 
         // Commercial Right Calculator Logic
@@ -717,8 +789,13 @@
             const fee = abPrice * 0.30;
             const total = abPrice + fee;
 
-            feeSpan.innerText = `+$${fee.toFixed(2)}`;
-            totalSpan.innerText = `$${total.toFixed(2)}`;
+            if (currentCurrency === 'THB') {
+                feeSpan.innerText = `+฿${fee.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
+                totalSpan.innerText = `฿${total.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
+            } else {
+                feeSpan.innerText = `+$${fee.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                totalSpan.innerText = `$${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            }
         }
 
         // Real-time TOS Keyword Search Filter
